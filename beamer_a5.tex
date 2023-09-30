@@ -1,0 +1,941 @@
+\documentclass[uplatex,12pt,dvipdfmx,xcolor=svgnames]{beamer}
+\usepackage[sourcehan]{pxchfon}
+\geometry{papersize={140mm, 190mm}}
+
+%\setbeamertemplate{navigation symbols}{}
+
+\usepackage{bxdpx-beamer}
+\usepackage{minijs}
+
+\usepackage{atbegshi}
+\AtBeginDvi{\special{pdf:tounicode EUC-UCS2}}
+
+\usetheme{Madrid}
+\useinnertheme{rectangles}
+\useoutertheme{infolines}
+
+%\usepackage{otf}
+%\usepackage[deluxe]{otf}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ascmac}
+\usepackage{ulem}
+\usepackage{fancybox}
+\usepackage{cancel}
+\usepackage{plext}
+\usepackage{array}
+\usepackage[svgnames]{xcolor}
+\usepackage{tikz}
+\usepackage{accents}
+\usepackage{tcolorbox}
+
+
+\definecolor{titleBLUE}{rgb}{.2,.2,.7}
+
+\def\shatai#1{\makebox[2.25zw][l]{\vphantom{#1}\rotatebox{-48.8}{\scalebox{0.875}[1.143]{\rotatebox{41.2}{\smash{\rlap{#1}}}}}}}
+
+\makeatletter
+\def\kenten#1{%
+\ifvmode\leavevmode\else\hskip\kanjiskip\fi
+%\setbox1=\hbox to \z@{\hspace{0.3zw}{\textrm 、}\hss}
+\setbox1=\hbox to \z@{\hspace{0.3zw}${}_{\circ}$\hss}%
+\ht1=0.1zw
+\@kenten#1\end}
+\def\@kenten#1{%
+\ifx#1\end \let\next=\relax \else
+\raise1.0zw\copy1\nobreak #1\hskip\kanjiskip\relax
+\let\next=\@kenten
+\fi\next}
+\makeatother
+
+\def\vekutoru#1{\mbox{\boldmath $#1$}}
+
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+\newcommand{\bibun}{\mathrm{d}}
+
+\newcommand{\maxprob}{\mathop\mathrm{maximise}\limits}
+%\newcommand{\minprob}{\mathop\mathrm{min.}\limits}
+
+\newcommand{\argumentmax}{\mathop\mathrm{arg\,max}\limits}
+
+\def\maru#1{\textcircled{\scriptsize #1}}
+\def\shoumon#1{\vspace{1em}\noindent\ovalbox{\textsf{ #1 }}}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\setbeamerfont{title}{size=\large,series=\bfseries}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamertemplate{frametitle}[default][center]
+\usefonttheme{professionalfonts} 
+
+\setbeamertemplate{itemize item}{%
+	\footnotesize
+	\raise1.0pt
+	\hbox{\donotcoloroutermaths$\blacksquare$}
+}
+
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamertemplate{itemize subitem}{%
+	\footnotesize
+	\raise1.25pt
+	\hbox{\donotcoloroutermaths$\blacktriangleright$}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\KAMOKU}{S. Bowles\quad \shatai{『制度と進化のミクロ経済学』}}
+\newcommand{\TAITORU}{2 自生的秩序{\Large : 経済生活の自己組織化}}
+\newcommand{\CHOSHA}{下平 勇太}
+\newcommand{\CHOSHAen}{Y. Shimodaira}
+\newcommand{\SHOZOKU}{大学院安田ゼミ}
+
+\title[Bowles Ch.2]{\TAITORU}
+\author[\CHOSHAen]{\CHOSHA}
+\institute[]{\SHOZOKU}
+\date{\today}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+\vspace{20mm}
+
+\colorbox{titleBLUE}{\vbox {\hsize130mm \quad {\textcolor{white}{
+\KAMOKU
+}} \vfil}}
+{\vbox {\hsize130mm \hspace{20mm} \textbf{\Huge
+\vspace{1mm}\\
+\hspace*{\stretch{1}}\ \TAITORU
+\hspace{\stretch{1}}} \vspace{0mm}}}
+\colorbox{titleBLUE}{\vbox {\hsize130mm \hspace*{\stretch{1}}{\textcolor{white}{
+\CHOSHA${}^{\dagger}$
+}} \quad \vfil}}
+\vspace{3mm}
+
+\renewcommand{\thefootnote}{$\dagger$}
+\footnotetext[1]{\SHOZOKU.}
+\renewcommand{\thefootnote}{*\arabic{footnote}}
+\setcounter{footnote}{0}
+
+\tableofcontents
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\secI}{進化社会科学}
+%\section{\secI}
+%\begin{frame}[t]{\secI}
+%
+%
+%
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\secII}{居住分離: 1つの進化過程}
+\section{\secII}
+\begin{frame}[t]{\secII}
+	
+\begin{itemize}
+	\item 2種類の``人種''(グリーン，ブルー)が存在．
+	\item 選好を市内に住むグリーンの割合$f\ \in[0, 1]$上で定義．
+	\item 選好を住宅に対する評価(価格) $p_g, p_b \in \mathbb{R}_+$で表現する．
+	\item $f^{\#} \succ_{i} f$ ならば，$p_i(f^{\#}) > p_i(f)\ \big( i \in \{g, b\} \big).$
+	\item $p_g, p_b$は具体的に，
+		\begin{align}
+			p_g(f) &= \frac{1}{2}(f-\delta_g) -\frac{1}{2}(f-\delta_g)^2 +p,
+			\tag{2.1.g} \\
+			p_b(f) &= \frac{1}{2}(f+\delta_b) -\frac{1}{2}(f+\delta_b)^2 +p.
+			\tag{2.1.b}
+		\end{align}
+	\item ただし，$\delta_i \in(0, 1/2)$は差別的好みの度合い．
+	\item $p\ (=\text{const.})$は$f$に依存しない，住宅固有の価値．
+	\item グリーンにとって，半々より$\delta_g$だけグリーンが多い状態が最適．\\
+		ブルーにとって，半々より$\delta_b$だけブルーが多い状態が最適．
+\end{itemize}
+
+
+	
+	\big[scale=.8]{fig1}
+	\textbf{$f$ v.s. $p_g, p_b$．ただし$\delta_g \neq \delta_b$．$f^*=\frac{1}{2}+\frac{\delta_g - \delta_b}{2}$．}
+	\textbf{:fig1}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secII}
+
+\begin{itemize}
+	\item (人種を問わず)市内の住民のうち$\alpha \in (0, 1)$が市外の住民に住宅を売却するとする．
+	\item 市内の住民が潜在的売り手であり，かつブルーである確率は$\alpha (1-f)$．
+	\item 市外の人種構成が市内と同じであると仮定．
+	\item つまり，市外から来る潜在的買い手がグリーンである確率は$f$．
+	\item 潜在的買い手がグリーンであり，かつ，そのグリーンがランダムに訪ねた市内の住民が潜在的売り手であり，かつブルーである確率は
+		\begin{equation*}
+			\alpha f (1-f).
+		\end{equation*}
+	\item ある$f$において $p_g(f) > p_b(f)$ のとき，$[\, p_b(f), p_g(f)\, ]$のある価格で売買が成立しうる．
+	\item 潜在的買い手のグリーンと潜在的売り手のブルーとの間で売買が成立する確率は，
+		\begin{equation*}
+			\left\{
+			\begin{array}{ll}
+				\beta \left[ p_g(f) - p_b(f) \right] & \text{if}\quad p_g(f) > p_b(f), \\
+				0 & \text{if}\quad p_g(f) \leq p_b(f).
+			\end{array}
+			\right.
+		\end{equation*}
+	\item グリーンとブルーの間で売買が成立すれば$f$が変化．
+		変化量は，
+		\begin{align}
+			\Delta f &=
+			\left\{
+			\begin{array}{ll}
+				\alpha f(1-f)\cdot \beta \left[ p_g(f) - p_b(f) \right]
+				& \text{if}\ \text{グリーンがブルーから買う},\\
+				-\alpha f(1-f)\cdot \beta \left[ p_b(f) - p_g(f) \right]
+				& \text{if}\ \text{ブルーがグリーンから買う},
+			\end{array}
+			\right. \notag \\
+			\notag \\
+			&=
+			\alpha f(1-f) \rho_g \beta \left[ p_g(f) - p_b(f) \right]
+			-\alpha f(1-f) \rho_b \beta \left[ p_b(f) - p_g(f) \right] \tag{2.2} \\
+			&=
+			\alpha f(1-f) \beta \left[ p_g(f) - p_b(f) \right]. \tag{2.3} \label{eq:2.3}
+%			 \\
+%			&=
+%			\alpha \beta f \left[p_g(f)-\uline{p}\ \right]
+%			\quad \big(\uline{p}\equiv fp_g(f)+(1-f)p_b(f)\big). \tag{2.3${}'$}
+		\end{align}
+		ただし，$\rho_i = 1\ (\text{if}\ p_i>p_{-i})$，$\rho_i =0\ (\text{if}\ p_i\leq p_{-i})$，$\rho_g+\rho_b=1$．
+	\item 式(\ref{eq:2.3})がレプリケータ・ダイナミクス方程式．
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secII}
+	
+\begin{itemize}
+	\item $\Delta f$は時間に対する変化量．
+		式(\ref{eq:2.3})の右辺は$f$の関数．
+		すなわち，式(\ref{eq:2.3})は$f$に関する微分方程式になっている．
+	\item 定常状態とは，$f$が時間によって変化しない状態．
+		すなわち$\Delta f =0$．
+	\item 相図を描いて定常状態の安定性を議論． 
+		
+			
+			\big[scale=.5]{fig2}
+			\big[scale=.5]{fig3}
+			\textbf{:fig2fig3}
+		
+		左$\big((\dot{x}(t))'<0\big)$は不安定．
+		右$\big((\dot{x}(t))'>0\big)$は安定．
+	\item 定常状態$f=f^*$が$\left.\displaystyle\frac{\bibun \Delta f}{\bibun f}\right|_{f=f^*} >0$のとき，その定常状態は不安定．\\
+	定常状態$f=f^*$が$\left.\displaystyle\frac{\bibun \Delta f}{\bibun f}\right|_{f=f^*} <0$のとき，その定常状態は安定．
+\end{itemize}
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secII}
+
+\begin{itemize}
+	\item 簡単のため$\delta_g=\delta_b=\delta$．
+	\item 式(\ref{eq:2.3})は
+		\begin{equation*}
+			\Delta f = \alpha\beta\delta\ f(1-f)(2f-1).
+		\end{equation*}
+	\item 定常状態$(\Delta f =0)$は，$f=0,\ 1/2,\ 1$の3つ．
+	\item 相図を描いて定常状態の安定性を確かめる．\\
+		$f=1/2$は不安定．
+		$f=0,\ 1$は安定．
+		
+			
+			\big[scale=.8]{fig4}
+			\textbf{相図．}
+			\textbf{:fig4}
+		
+	\item $f=1/2$とは，グリーンとブルーが半々で混住する均衡．
+		しかし，僅かにバランスが崩れれば，たちまち$f=1/2$は維持できなくなる．
+	\item $f=1$とは，市内にグリーンしかいなくなる均衡．
+		偶然，ブルーが入ってきても，すぐにグリーンに入れ替わる．
+\end{itemize}
+	
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secII}
+	
+\begin{itemize}
+	\item 例えば図の場合，$p_g(1/2)>p_g(1)$，$p_b(1/2)>p_b(1)$より，$f=1$は$f=1/2$に対してPareto劣位．
+		
+			
+			\big[scale=.8]{fig5}
+			\textbf{:fig5}
+		
+	\item $f=1$が$f=1/2$に対してPareto劣位である条件は，
+		\begin{equation*}
+			p_g\left(\frac{1}{2}\right) > p_g(1) \quad \Longrightarrow\quad (0<)\ \delta < \frac{1}{4}.
+		\end{equation*}
+\end{itemize}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\secIII}{行動進化のモデル化}
+\section{\secIII}
+\begin{frame}[t]{\secIII}
+
+\begin{itemize}
+	\item 個体群の個人は，$x$型か$y$型のいずれか一方の特性を持つ．
+	\item 相手が$j$をプレイするとき，自分が$i$をプレイするときの利得$\pi(i, j)$．
+		ただし，$i, j \in \{x, y\}$．
+	\item 個体群の中で$x$型が占める割合は$p \ \in [0, 1]$．
+	\item $x$型，$y$型それぞれをプレイするときの期待利得は
+		\begin{align}
+			b_x(p) &= p\pi(x, x) + (1-p) \pi(x, y), \tag{2.4.x} \\
+			b_y(p) &= p\pi(y, x) + (1-p) \pi(y, y). \tag{2.4.y}
+		\end{align}
+	\item 個体群のうち，$\omega \ \in [0, 1]$が文化モデルに接触して自らの特性を更新する\kenten{可能性がある}．	
+	\item ある$p$において$b_y(p)>b_x(p)$のとき，$x$型は自らの特性を$y$型に変えることにやぶさかではない．
+	\item ある$p$において$b_y(p)\leq b_x(p)$のとき，$x$型は自らの特性を$y$型に絶対変えない．
+	\item $x$型が自らを$y$型に更新する確率は，
+		\begin{equation*}
+			\left\{
+			\begin{array}{ll}
+				\beta \left[ b_y(p) - b_x(p) \right] & \text{if}\quad b_y(p) > b_x(p), \\
+				0 & \text{if}\quad b_y(p) \leq b_x(p).
+			\end{array}
+			\right.
+		\end{equation*}
+	\item $\rho$を定義．
+		\begin{equation*}
+			\rho = \left\{
+			\begin{array}{ll}
+				1 & \text{if}\quad b_y(p) > b_x(p), \\
+				0 & \text{if}\quad b_y(p) \leq b_x(p).
+			\end{array}
+		\right.
+		\end{equation*}
+	\item 隣接2期間での$p$の変化量$\Delta p$は，
+		\begin{align}
+			\Delta p 
+			&=
+			\left\{
+			\begin{array}{llll}
+				-
+				&\underbrace{\omega p}_{\text{特性を変えうる$x$が}}
+				&\cdot \underbrace{(1-p)}_{\text{文化モデル$y$と接触し}}
+				&\cdot \underbrace{\beta \left[ b_y(p) - b_x(p) \right]}_{\text{実際に特性を変える．}},\\
+				&\underbrace{\omega (1-p)}_{\text{特性を変えうる$y$が}}
+				&\cdot \underbrace{p}_{\text{文化モデル$x$と接触し}}
+				&\cdot \underbrace{\beta \left[ b_x(p) - b_y(p) \right]}_{\text{実際に特性を変える．}},
+			\end{array}
+			\right. \notag \\
+			\notag \\
+			&=
+			-\omega p(1-p) \beta 
+			\left[ b_y(p) - b_x(p) \right] \rho
+			+\omega p(1-p) \beta 
+			\left[ b_x(p) - b_y(p) \right] (1-\rho),
+			\tag{2.5} \\
+			&=
+			p(1-p) \ \omega \beta
+			\left[ b_x(p) - b_y(p) \right].
+			\tag{2.6}
+		\end{align}
+\end{itemize}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIII}
+
+\begin{itemize}
+	\item レプリケータ・ダイナミクスの一般形
+		\begin{equation}
+			\Delta p = p(1-p) \ \omega \beta
+			\left[ b_x(p) - b_y(p) \right].
+			\tag{2.6}
+			\label{eq:2.6}
+		\end{equation}
+	\item 個体群から無作為抽出した個人が$x$型であるか否か，という確率変数はBernouli分布に従う．
+	\item $p(1-p)$はBernouli分布の分散．
+	\item $p$が極端な値の時，分散は小さく，個体群の均質性が高い．
+	\item $\therefore$ 個体群の均質性が高い時，進化の過程はゆっくり($\Delta p$が小)．
+	\vspace{5mm}
+	\item $\omega \beta
+	\left[ b_x(p) - b_y(p) \right]$は利得に対する$p$の効果を表す．
+	\item $\therefore$ $b_x(p)$と$b_y(p)$の差が大きければ，進化の過程はスピーディー．
+	\vspace{5mm}
+	\item 個体群全体における平均利得$\uline{b}(p)\equiv pb_x(p)+(1-p)b_y(p)$を定義．
+	\item これを用いて式(\ref{eq:2.6})を書き直すと，
+		\begin{equation}
+			\Delta p = p\omega\beta[b_x(p)-\uline{b}(p)].
+			\tag{2.6$'$}
+		\end{equation}
+	\item これが離散時間型レプリケータ・ダイナミクスの一般形．
+\end{itemize}
+
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIII}
+
+\begin{itemize}
+	\item レプリケータ・ダイナミクスの一般形
+		\begin{equation}
+			\Delta p = p(1-p) \ \omega \beta
+			\left[ b_x(p) - b_y(p) \right],
+			\tag{2.6}
+		\end{equation}
+		where
+		\begin{align}
+			b_x(p) &= p\pi(x, x) + (1-p) \pi(x, y), \tag{2.4.x} \\
+			b_y(p) &= p\pi(y, x) + (1-p) \pi(y, y). \tag{2.4.y}
+		\end{align}
+	\item 式(\ref{eq:2.6})の右辺は$p$の関数．
+		これを$\gamma(p)$と書くことにしよう．
+	\item $\pi(\cdot, \cdot) =\text{const.}$なら，$\gamma(p)$は$p$に関して3次関数．
+	\vspace{5mm}
+	\item $\Delta p = \gamma(p^*) =0$を満たす状態$p^*$を定常状態と呼ぶ．
+	\item 式(\ref{eq:2.6})より，定常状態となる$p$は3つの場合がある:
+		\begin{equation*}
+			p=0,\quad
+			p=1,\quad
+			p=p^{\#}\ \text{s.t.} \ b_x(p^{\#}) = b_y(p^{\#}).
+		\end{equation*}
+	\vspace{0mm}
+	\item $p(1-p) >0$，$\omega\beta >0$より，$\Delta p$の符号は$b_x-b_y$の符号に等しい．
+	\item $\therefore$ 更新は利得単調的．i.e., $x \succ y\ \Longleftrightarrow \ \Delta p > 0$．
+	\item 平均以上の利得を伴う行動(特性)が他の人々に模倣され，それが個体群を占める割合が増大する．
+\end{itemize}
+
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIII}
+	
+\begin{itemize}
+	\item 定常状態$p^*$において，摂動$\epsilon$を考える．
+	\item $p^*$が漸近安定であるとは，
+		\begin{equation*}
+			\gamma(p^*+\epsilon) \lessgtr 0 
+			\quad \big(\epsilon \gtrless 0\big).
+		\end{equation*}
+		$\epsilon\gtrless0$ずれたら，$\Delta p = \gamma(p^*+\epsilon)\lessgtr0$戻る．
+	\item すなわち，
+		\begin{equation*}
+			\underbrace{0 > \frac{\gamma(p^*+\epsilon)}{\epsilon}}%
+			_{\substack{\text{``$\lessgtr$''どちらの場合も}\\ \text{この不等式で済む.}}}
+			 \ =
+			\frac{\gamma(p^*+\epsilon) - \gamma(p^*)}{\epsilon}\ 
+			\xrightarrow[\epsilon\rightarrow 0]{}
+			\frac{\bibun \gamma(p^*)}{\bibun p}
+			= \left.\frac{\bibun \Delta p}{\bibun p}\right|_{p=p^*}.
+		\end{equation*}
+%	\vspace{5mm}
+%	\item $p^*$がLyapunov安定であるとは，$p^*$の近くから出発するどんな経路も，$p^*$の近くに留まり続けている状態であること．
+%	\item (ちょっと難しく言うと，)\\
+%		$\forall \epsilon >0$に対して $\exists \delta >0$，s.t.
+%		\begin{equation*}
+%			\| p_0 - p^* \| < \delta
+%			\ \Longrightarrow \ 
+%			(\forall t)\ \| p_t - p^* \| < \epsilon
+%		\end{equation*}
+%		ならば，$p^*$はLyapunov安定．
+%	\item 漸近安定 $\Longrightarrow$ Lyapunov安定．
+%	\vspace{5mm}
+%	\item 定常状態$p=p^*$が$(0, 1)$の内点で，かつ，不安定なとき，
+%		\begin{equation*}
+%			\left\{
+%			\begin{array}{ll}
+%				\Delta p <0 \ \Rightarrow \ (0<)\ p<p^* \ :
+%				&\quad p=0\text{の吸引域}, \\
+%				\Delta p >0 \ \Rightarrow \ p^*<p\ (<1) \ :
+%				&\quad p=1\text{の吸引域}.
+%			\end{array}
+%			\right.
+%		\end{equation*}
+%\end{itemize}
+%	
+%	
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[t]{\secIII}
+%
+%\begin{itemize}
+	\vspace{5mm}
+	\item \textcolor{magenta}{内点$p^{\#} \ \in(0, 1)$が}漸近安定であるための必要条件は，
+		\begin{equation*}
+			\frac{\bibun b_x(p)}{\bibun p} < \frac{\bibun b_y(p)}{\bibun p},
+		\end{equation*}
+		\begin{equation}
+			\therefore\quad
+			\pi(y,x) -\pi(y,y) -\pi(x,x) +\pi(x,y)>0.
+			\tag{2.8}
+			\label{eq:2.8}
+		\end{equation}
+	\item 期待利得$b_i(p)$の傾きを比較.
+		$p$の上昇(i.e., $x$の増加)を打ち消すために，$b_y$の傾きの方が大きくないとダメ．
+	\item ($\because$)\quad $p^{\#}$が漸近安定であるとき，以下が成立．
+		\begin{equation*}
+			\left\{
+			\begin{array}{ll}
+				b_x(p) > b_y(p) 
+				& \text{if}\quad (0<)\, p < p^{\#}, \\
+				b_x(p) < b_y(p)
+				& \text{if}\quad p^{\#} < p \,(<1).
+			\end{array}
+			\right.
+		\end{equation*}
+		このためには式(\ref{eq:2.8})が必要(グラフで理解)．
+		\begin{align*}
+			0&> \left.\frac{1}{\omega\beta}
+			\frac{\bibun \Delta p}{\bibun p}\right|_{p=p^{\#}}
+			= (1-2p)
+			\underbrace{[b_x(p^{\#})-b_y(p^{\#})]}_{=0} \\
+			&\hspace{40mm}
+			+\underbrace{p(1-p)}_{>0}
+			\frac{\bibun}{\bibun p}[b_x(p^{\#})-b_y(p^{\#})] \\
+			\therefore\ 0&>
+			\frac{\bibun}{\bibun p}[b_x(p^{\#})-b_y(p^{\#})].
+		\end{align*}
+\end{itemize}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\secIV}{進化的な安定性と社会的結果}
+\section{\secIV}
+\begin{frame}[t]{\secIV}
+
+\begin{itemize}
+	\item 以下の利得表で表されるようなタカ・ハトゲームを考える．
+		\begin{equation*}
+			\begin{array}{lcc}
+				\hline\hline\\[-12pt]
+				& H & D \\ \hline \\[-10pt]
+				\text{タカ} H & -10 & 10 \\[2mm]
+				\text{ハト} D & 0 & 5 \\[2mm]
+				\hline\hline
+			\end{array}
+		\end{equation*}
+	\item 純粋戦略で対称Nash均衡は存在しない．
+	\item 混合戦略で対称Nash均衡は$\ldots$
+	\item タカの割合を$q$，ハトの割合を$1-q$とする．$q \in[0, 1]$．
+	\item タカ，ハト，それぞれの戦略を採るときの期待利得$u_H$，$u_D$は，
+		\begin{align*}
+			u_H(q) &= q \pi(H, H) + (1-q) \pi(H, D) \\
+			&= -10q+10(1-q) = -20q+10, \\
+			u_D(q) &= q \pi(D, H) + (1-q) \pi(D, D) \\
+			&= 0q+5(1-q) = -5q+5.
+		\end{align*}
+	\item タカ，ハト両戦略が無差別になるのは，
+		\begin{equation*}
+			\begin{array}{rrcl}
+				& u_H(q) & = & u_D(q) \\
+				\Longrightarrow \quad 
+				& -20q+10 & = & -5q+5 \\
+				\Longrightarrow \quad 
+				& q & = & \dfrac{1}{3}.
+			\end{array}
+		\end{equation*}
+	\item したがって，対称Nash均衡$s^*=(s^*(H), s^*(D))$は，
+		\begin{equation*}
+			(s^*(H), s^*(D)) = \left(\frac{1}{3}, \frac{2}{3} \right).
+		\end{equation*}
+\end{itemize}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIV}
+
+\begin{itemize}
+	\item $u_H$，$u_D$をグラフに描く．
+		
+			
+			\big[scale=.8]{fig6}
+			\textbf{:fig6}
+		
+	\item $q<s^*(H)\ (=1/3)$の領域では$u_H>u_D$．
+	\item タカの期待利得の方が大きいからタカが増える．
+		i.e., $q$は大きくなる．
+	\item $q>s^*(H)\ (=1/3)$の領域では$u_H<u_D$．
+	\item ハトの期待利得の方が大きいからハトが増える．
+		i.e., $q$は小さくなる．
+	\item ちょうど$q=s^*(H)\ (=1/3)$では，一方の割合を大きくしたときに，他方の戦略の期待利得が大きくなって，元の割合に戻すチカラが働く．
+	\item これを進化的に安定という．
+\end{itemize}
+
+
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIV}
+	
+\begin{itemize}
+	\item 以下の利得表で表されるような協調ゲームを考える．
+		\begin{equation*}
+			\begin{array}{lcc}
+				\hline\hline\\[-12pt]
+				& M & L \\ \hline \\[-10pt]
+				\text{Mac}\ M & 6 & 0 \\[2mm]
+				\text{Linux}\ L & 0 & 4 \\[2mm]
+				\hline\hline
+			\end{array}
+		\end{equation*}
+	\item 純粋戦略で対称Nash均衡は，全員が$M$を選ぶか，または全員が$L$を選ぶこと．
+	\item 混合戦略で対称Nash均衡は$\ldots$
+	\item Macの割合を$q$，Linuxの割合を$1-q$とする．
+		$q \in[0, 1]$．
+	\item Mac，Linux，それぞれの戦略を採るときの期待利得$u_M$，$u_L$は，
+		\begin{align*}
+			u_M(q) &= q \pi(M, M) + (1-q) \pi(M, L) \\
+			&= 6q+0(1-q) = 6q, \\
+			u_L(q) &= q \pi(L, M) + (1-q) \pi(L, L) \\
+			&= 0q+4(1-q) = -4q+4.
+		\end{align*}
+	\item Mac，Linux両戦略が無差別になるのは，
+		\begin{equation*}
+			\begin{array}{rrcl}
+				& u_M(q) & = & u_L(q) \\
+				\Longrightarrow \quad 
+				& 6q & = & -4q+4 \\
+				\Longrightarrow \quad 
+				& q & = & \dfrac{2}{5}.
+			\end{array}
+		\end{equation*}
+	\item したがって，(混合戦略)対称Nash均衡$s^*=(s^*(M), s^*(L))$は，
+		\begin{equation*}
+			(s^*(M), s^*(L)) = \left(\frac{2}{5}, \frac{3}{5} \right).
+		\end{equation*}
+\end{itemize}
+	
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIV}
+	
+	\begin{itemize}
+		\item $u_M$，$u_L$をグラフに描く．
+		
+			
+			\big[scale=.8]{fig7}
+			\textbf{:fig7}
+		
+		\item $q<s^*(M)\ (=2/5)$の領域では$u_M<u_L$．
+		\item Linuxの期待利得の方が大きいからLinuxが増える．i.e., $q$は小さくなる．
+		\item $q>s^*(M)\ (=2/5)$の領域では$u_M>u_L$．
+		\item Macの期待利得の方が大きいからMacが増える．i.e., $q$は大きくなる．
+		\item ちょうど$q=s^*(M)\ (=2/5)$\kenten{以外}では，一方の割合を大きくしたときに，その戦略の期待利得が大きくなって，元の割合から離れるチカラが働く．
+		\item これは進化的に安定ではない．
+		\item 一方，$s^*=(0, 1), (1, 0)$は進化的に安定である．
+	\end{itemize}
+	
+	
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIV}
+
+\begin{itemize}
+	\item 個体群の個体はタカ($H$)かハト($D$)のいずれかであるとする．$\Sigma=\{H, D\}$
+	\item タカ1羽とハト1羽が出会ったとき，それぞれ，$\pi(H, D)$羽，$\pi(D, H)$羽の子孫を(無性生殖によって)残すとする．
+	\item たとえば$\pi(H, D)=10$，$\pi(D, H)=0$のとき，$H:D=1:1$から$H:D=11:1$に変化する．
+	\item $\pi(i, j)$を適応度(関数)と呼ぶ．ただし$i\in\Sigma$は自分が持っている戦略，$j\in\Sigma$は相手が持っている戦略．
+	\item 個体群の中の$H$の割合が$p$，$D$の割合が$1-p$のとき，自分が$i\in\Sigma$を選んだときの期待適応度は
+		\begin{equation*}
+			p\pi(i, H) + (1-p)\pi(i, D).
+		\end{equation*}
+\end{itemize}
+
+\begin{definition}[進化的に安定な戦略: ESS]
+	\quad
+	戦略$s^*\in\Sigma$が進化的に安定な戦略であるとは，任意の他の戦略$s \in\Sigma\setminus\{s^*\}$について，ある$\tilde{p}>0$が存在し，任意の$\epsilon \in(0, \tilde{p})$について
+		\begin{equation}
+			(1-\epsilon)\pi(s^*, s^*) + \epsilon\pi(s^*, s)
+			>
+			(1-\epsilon)\pi(s, s^*) + \epsilon\pi(s, s)
+			\label{eq:ESS}
+		\end{equation}
+	が成立すること．
+\end{definition}
+
+\begin{itemize}
+	\item この定義を以下のように読み下す．
+	\item 個体群の個体がすべて$s^*$を戦略に持っている中，わずかに($\epsilon$だけ) 変異体$s$が侵入したとする．
+	\item このときの$s^*$の期待適応度が左辺．
+	\item このときの$s$の期待適応度が右辺．
+	\item どんな変異体$s$も，十分に小さい割合$\epsilon$で侵入してくる場合，ESS $s^*$の期待適応度の方が厳密に大きくなることを要求．
+	\vspace{3mm}
+	\item 利得最大化 $=$ 合理的選択．
+	\item 適応度最大化 $=$ 自然淘汰．
+	\item Nash均衡を，合理性を前提としない均衡として再解釈．
+\end{itemize}
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIV}
+	
+\begin{itemize}
+	\item 式(\ref{eq:ESS})を整理してみると，
+		\begin{equation*}
+			(1-\epsilon)\Big[\pi(s^*, s^*) - \pi(s, s^*)\Big]
+			+\epsilon\Big[\pi(s^*, s) - \pi(s, s)\Big]
+			>0.
+		\end{equation*}
+	\item $1-\epsilon\gg\epsilon$に注意すると，	$s^*$がESSである条件は
+		\begin{block}{ESSの条件}
+			\begin{equation}
+				\pi(s^*, s^*) > \pi(s, s^*)
+				\label{eq2}
+			\end{equation}
+			または
+			\begin{equation}
+				\pi(s^*, s^*) = \pi(s, s^*)
+				\quad\text{かつ}\quad
+				\pi(s^*, s) > \pi(s, s)
+				\label{eq3}
+			\end{equation}
+			が成り立つこと
+		\end{block}
+		と書きなおすことができる．
+	\item 前半の式より，$s^*$は対称Nash均衡になっていることが分かる．
+	\item ESS $\Longrightarrow$ 対称Nash均衡．
+%	\item ESS $\centernot\Longleftarrow$ 対称Nash均衡．
+\end{itemize}
+	
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIV}
+
+\begin{itemize}
+	\item 個体群の個体は，$x$型か$y$型のいずれか一方の特性を持つ．
+	\item 個体群を占める$x$型の割合を$p$．
+%	\item 侵入障壁$\tilde{p}\ \in(0, 1)$は$p=0$の吸引域と$p=1$の吸引域の境界．
+	\item \kenten{全員が}$y$型である個体群に，少数$\epsilon$の$x$型が侵入する状況を考える．
+	\item R.D.方程式$\Delta p =\gamma(p)$を$p=\epsilon$で評価する．
+		\begin{equation*}
+			\Delta p\Big|_{p=\epsilon} = \epsilon(1-\epsilon) \ \omega \beta
+			\left[ b_x(\epsilon) - b_y(\epsilon) \right].
+		\end{equation*}
+	\item $\Delta p$の符号は$b_x-b_y$の符号と等しい．
+		\begin{align*}
+			b_x(\epsilon)-b_y(\epsilon) &=
+			[\epsilon\pi(x, x)+(1-\epsilon)\pi(x, y)]
+			-[\epsilon\pi(y, x)+(1-\epsilon)\pi(y, y)] \\
+			&=
+			(1-\epsilon)[\pi(x, y) - \pi(y, y)]
+			+\epsilon[\pi(x, x) - \pi(y, x)].
+		\end{align*}
+	\item $\epsilon$が十分小さいとき，$1-\epsilon \gg \epsilon$ゆえ
+		\begin{equation*}
+			b_x(\epsilon)-b_y(\epsilon) \ 
+			\left\{
+			\begin{array}{ll}
+				<0 &
+				\text{if}\quad
+				\textcolor{red}{
+				\pi(x, y) < \pi(y, y)}, \\
+				<0 &
+				\text{if}\quad
+				\textcolor{red}{
+				\pi(x, y) = \pi(y, y)
+				\ \text{かつ}\ 
+				\pi(x, x) < \pi(y, x)}, \\
+				=0 &
+				\text{if}\quad
+				\pi(x, y) = \pi(y, y)
+				\ \text{かつ}\ 
+				\pi(x, x) = \pi(y, x), \\
+				>0 &
+				\text{if}\quad
+				\pi(x, y) = \pi(y, y)
+				\ \text{かつ}\ 
+				\pi(x, x) > \pi(y, x), \\
+				>0 &
+				\text{if}\quad
+				\pi(x, y) > \pi(y, y).
+			\end{array}
+			\right.
+		\end{equation*}
+	\item 任意の小さい$\epsilon>0$に対して$\Delta p |_{p=\epsilon}<0$ならば，``全員が$y$型''は漸近安定的な均衡．
+	\vspace{5mm}
+	\item ところで，侵入者$x\,(=s)$に対してマジョリティ$y\,(=s^*)$がESSである条件は，式(\ref{eq2})または式(\ref{eq3})が成立すること．
+	\item すなわち，任意の小さい$\epsilon>0$に対して，
+		\begin{equation}
+			\textcolor{red}{
+			\pi(y, y) > \pi(x, y)
+			}
+			\tag{2.9.1}
+		\end{equation}
+	または，
+		\begin{equation}
+			\textcolor{red}{
+			\pi(y, y) = \pi(x, y)
+			\quad \text{かつ}\quad
+			\pi(y, x) > \pi (x, x)
+			}
+			\tag{2.9.2}
+		\end{equation}
+	が成り立つこと．
+	\vspace{5mm}
+	\item 結局，ESSはレプリケータ・ダイナミクスにおける漸近安定的な均衡．
+%	\item 各$j \ \in\{x, y\}$に対して$\pi(y, j) \geq \pi(x, j)$が成立しているから，$y$は最適反応になっている．
+%	\item $x$に侵入されてもそれ以上増殖しない:\ $y$は中立的安定状態(NSS)．
+%	\item ESS $\Longrightarrow$ NSS．
+%	\item NSS $\Longrightarrow$ Nash均衡．
+\end{itemize}
+	
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIV}
+	
+\begin{itemize}
+	\item タカ・ハトゲーム．利得表は以下．
+		\begin{equation*}
+			\begin{array}{lll}
+				\hline\hline\\[-12pt]
+				& \quad h & \quad d \\ \hline \\[-10pt]
+				\text{タカ} h & (A=)\ \dfrac{1}{2}(v-c) & (B=)\ v \\[2mm]
+				\text{ハト} d & (C=)\ 0 & (D=)\ \dfrac{1}{2}v \\[2mm]
+				\hline\hline
+			\end{array}
+		\end{equation*}
+	\item タカの割合を$p$とする．
+	\item タカ，ハトそれぞれの戦略を選んだときの期待利得$b_h$，$b_d$は
+		\begin{align}
+			b_h(p) &= pA + (1-p)B, \tag{2.10.h} \\
+			b_d(p) &= pC + (1-p)D. \tag{2.10.d}
+		\end{align}
+	\item 来期，タカ1羽は$b_h+\phi$の，ハト1羽は$b_d+\phi$の子を作る．
+	\item 来期のタカの割合$p'$は，
+		\begin{equation}
+			p' = \frac{p(b_h + \phi)}{p(b_h + \phi) +(1-p)(b_d + \phi)}
+			= \frac{p(b_h + \phi)}{pb_h +(1-p)b_d + \phi}. 
+			\tag{2.11}
+		\end{equation}
+	\item 変化量$\Delta p$は，
+		\begin{align}
+			\Delta p &= p' - p \notag \\
+			&=
+			\frac{p(b_h + \phi) - p[p(b_h + \phi) +(1-p)(b_d + \phi)]}{pb_h +(1-p)b_d + \phi}
+			\tag{2.12} \\
+			&=
+			{\uline{b}}^{-1}
+			\ p(1-p)(b_h-b_d) \notag \\
+			&=
+			{\uline{b}}^{-1}
+			\ \frac{1}{2}p(1-p)(v-pc).
+			\tag{2.12${}'$} \\
+			&
+			\hspace{15mm}
+			\big(\because\ b_h-b_d=p(A-C)+(1-p)(B-D)=(v-pc)/2.\big)
+			\notag
+		\end{align}
+		ただし$\uline{b}\equiv pb_h +(1-p)b_d + \phi$．
+\end{itemize}
+
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\secIV}
+	
+\begin{itemize}
+	\item $\uline{b}\Delta p = \dfrac{1}{2}p(1-p)(v-pc)$
+		はR.D.方程式になっている．
+	\item $\Delta p = 0$を満たす$p$は，
+		\begin{equation}
+			p=0,\ 1,\ p^*=\frac{v}{c}.
+			\tag{2.13}
+		\end{equation}
+%	\item $v$は獲物を得る利得．$c$はタカ同士戦うコスト．
+	\item $b_h=b_d$を満たす内点$p^*$は安定的．なんとなればすなわち
+		\begin{equation}
+			\frac{\bibun}{\bibun p}[b_h(p)-b_d(p)]
+			=-\frac{1}{2}c <0.
+			\tag{2.14}
+		\end{equation}
+	\item $b_h(0)=v>v/2=b_d(0)$ゆえ，$p=0$はタカに逸脱のインセンティヴがあり，Nash均衡ではない．
+	\item $b_h(1)=(v-c)/2<0=b_d(1)$ゆえ，$p=1$はハトに逸脱のインセンティヴがあり，Nash均衡ではない．
+	\vspace{5mm}
+	\item 一般に以下のようにまとめられる．
+		\begin{equation*}
+			\begin{array}{lll}
+				\hline\hline\\[-12pt]
+				& y \text{はESS} & y \text{はESSでない} \\ \hline \\[-10pt]
+				x \text{はESS} & p^* \in(0, 1) \text{は不安定} & p=1 \text{は安定} \\[2mm]
+				x \text{はESSでない} & p=0 \text{は安定} & p^* \in(0, 1) \text{は安定} \\[2mm]
+				\hline\hline
+			\end{array}
+		\end{equation*}
+	\item $x$, $y$いずれもESSのとき，どっちが実際に選ばれる? 均衡選択の問題．
+\end{itemize}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[t]{\secIV}
+%	
+%	
+%\end{frame}
+%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\secV}{所有権の進化}
+%\section{\secV}
+%\begin{frame}[t]{\secV}
+%	
+%\begin{itemize}
+%	\item 
+%\end{itemize}
+%	
+%\end{frame}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}[t]{\secV}
+%	
+%	
+%	
+%	
+%	
+%\end{frame}
+
+
+
+\end{document}

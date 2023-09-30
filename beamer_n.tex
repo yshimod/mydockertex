@@ -1,0 +1,321 @@
+\documentclass[uplatex,14pt,dvipdfmx,xcolor=svgnames]{beamer}
+\usepackage[sourcehan]{pxchfon}
+\usepackage{bxdpx-beamer}
+\usepackage{minijs}
+
+%\setbeamertemplate{navigation symbols}{}
+
+\usepackage{atbegshi}
+\AtBeginDvi{\special{pdf:tounicode EUC-UCS2}}
+
+\usetheme{Madrid}
+\useinnertheme{rectangles}
+\useoutertheme{infolines}
+
+%\usepackage{otf}
+%\usepackage[deluxe]{otf}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ascmac}
+\usepackage{ulem}
+\usepackage{fancybox}
+\usepackage{cancel}
+\usepackage{plext}
+\usepackage{array}
+\usepackage[svgnames]{xcolor}
+\usepackage{tikz}
+\usepackage{accents}
+\usepackage{tcolorbox}
+
+\makeatletter
+\def\kenten#1{%
+\ifvmode\leavevmode\else\hskip\kanjiskip\fi
+%\setbox1=\hbox to \z@{\hspace{0.3zw}{\textrm 、}\hss}
+\setbox1=\hbox to \z@{\hspace{0.32zw}${}_{\circ}$\hss}%
+\ht1=0.1zw
+\@kenten#1\end}
+\def\@kenten#1{%
+\ifx#1\end \let\next=\relax \else
+\raise1.0zw\copy1\nobreak #1\hskip\kanjiskip\relax
+\let\next=\@kenten
+\fi\next}
+\makeatother
+
+\def\vekutoru#1{\mbox{\boldmath $#1$}}
+
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+\newcommand{\bibun}{\mathrm{d}}
+
+\newcommand{\maxprob}{\mathop\mathrm{maximise}\limits}
+%\newcommand{\minprob}{\mathop\mathrm{min.}\limits}
+
+\newcommand{\argumentmax}{\mathop\mathrm{arg\,max}\limits}
+
+\def\maru#1{\textcircled{\scriptsize #1}}
+\def\shoumon#1{\vspace{1em}\noindent\ovalbox{\textsf{ #1 }}}
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\setbeamerfont{title}{size=\large,series=\bfseries}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamertemplate{frametitle}[default][center]
+\usefonttheme{professionalfonts}  
+
+\setbeamertemplate{itemize item}{%
+	\footnotesize
+	\raise1.0pt
+	\hbox{\donotcoloroutermaths$\blacksquare$}
+}
+
+%\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamertemplate{itemize subitem}{%
+	\footnotesize
+	\raise1.25pt
+	\hbox{\donotcoloroutermaths$\blacktriangleright$}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Grossman \& Hart (1986)]{The Costs and Benefits of Ownership: \\ A Theory of Vertical and Lateral Integration}
+\subtitle{Grossman \& Hart (1986 JPE)}
+\author[Shimodaira, Y.]{Yuta Shimodaira}
+\institute[]{}
+\date{12 June 2017}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}[c]
+	
+\maketitle
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]
+	
+	\tableofcontents
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{4.1 (omitted)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\secII}{4.2 The Received Auction Theory}
+\section{\secII}
+\newcommand{\ssecIIa}{4.2.1 Relevance of the Received Theory}
+\subsection{\ssecIIa}
+\begin{frame}[t]{\ssecIIa}
+	
+\begin{itemize}
+	\item Assumptions of the RET:
+	\begin{itemize}
+		\item bidders are symmetric;
+		\item bidders are risk-neutral;
+		\item bidders share common priors;
+		\item bidders play non-cooperative Nash eqm.;
+		\item the number of bidders are independent;
+		\item the types of bidders are independent.
+	\end{itemize}
+\end{itemize}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\ssecIIa\textcolor[rgb]{0.2,0.2,0.7}{text}}
+	
+\begin{itemize}
+%	\item The theoretical result that if
+	\item If information is non-independent, the ascending auctions are more profitable than first-price sealed-bid auctions.
+	\item An explanation of this is that bidders' profits derive from their private information, and the auctioneer can profit by reducing that private information.
+%	\item The ascending auction is more profitable. 
+\end{itemize}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\ssecIIa}
+	
+\begin{itemize}
+	\item Riley \& Li (1997): numerical analysis suggests that the effects of affiliation are often tiny.
+	\begin{itemize}
+		\item Unless the information is very stlongly affiliated, the revenue difference between ascending and first-price auction is very small.
+	\end{itemize}
+	\item Perry \& Reny (1999): the result about affiliation does not hold in multi-unit auctions {\small (even in theory)}.
+	\item Argues the affiliation effect is important.
+\end{itemize}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\secIII}{4.3 The Elementary Economic Theory That Matters}
+\section{\secIII}
+\newcommand{\ssecIIIa}{4.3.1 Entry}
+\subsection{\ssecIIIa}
+\begin{frame}[t]{\ssecIIIa}
+
+\begin{itemize}
+	\item The profitability depends on the number of participants.
+	\item Different auctions vary in participants attractiveness to entry.
+	\vspace{5mm}
+	\item Bidders will only undertake if they feel that they have chances of winning.
+	\item Participating can be costly exercise.
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\ssecIIIa}
+
+\begin{itemize}
+	\item In \emph{an ascending auction}, a stronger bidder can always top any bid.
+	\item Knowing this, a weaker bidder may not enter.
+	\item Then, the stronger bidder is able to win at a low price.
+	\vspace{3mm}
+	\item In \emph{a first-price seald-bid auction}, a weaker bidder may win.
+	\item A stronger bidder could have beaten, but did not.
+	\item The stronger bidder may risk trying to win at a lower price.
+	\vspace{3mm}
+	\item More bidders may enter a first-price sealed-bid auction
+\end{itemize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\ssecIIIa}
+
+\begin{itemize}
+%	\item The player who has the lower value may win a first-price sealed-bid auction in Nash eqm.,
+%	\item but that this cannot happen in an ascending auction
+%	\item The argument depends on asymmetries between bidders.
+	\item ``A sledgehammer to crack a nut?''(牛刀割鶏?) 
+	\item Vickrey (1961) \\
+		--- asymmetries between bidders
+	\item Klemperer(1998), $\ldots$ \\
+		--- \textsl{almost-common-value} auction
+\end{itemize}	
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\ssecIIIa}
+	
+\begin{itemize}
+	\item Another reason why first-price sealed-bid auction may be more attractive to entrants:
+	\item Sealed-bid auction induces \emph{strategic uncertainty}.
+	\vspace{3mm}
+	\item Bidders are not likely to share \emph{common prios} about distributions of valuations.
+	\begin{itemize}
+		\item {\footnotesize With common prior, it cannot be common knowledge that different
+		individuals have different beliefs.}
+	\end{itemize}
+	\item Even if they share common priors, they may not play Nash eqm. strategies.
+\end{itemize}	
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\ssecIIIa}
+	
+\begin{itemize}
+	\item Over-sensitivity to the significance of information revelation and affiliation \\
+		{\footnotesize at the expense of insensitivity to the more important issue of entry.}
+	\item \emph{Revelation principle}: any mechanism is equivalent to another mechanism in which agents report their types and wish to do so truthfully.
+	\item \emph{Affiliation}: bidders' signals are \textsl{affiliated} if a high value of one bidder's signal makes high values of other bidders' signals more likely.
+	\item Netherlands (fiasco), Denmark, UK.
+\end{itemize}	
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ssecIIIb}{4.3.2 Collusion}
+\subsection{\ssecIIIb}
+\begin{frame}[t]{\ssecIIIb}
+	
+\begin{itemize}
+%	\item Players may behave collusively rather than non-cooperatively.
+	\item Collusion in \emph{a multi-unit ascending auction} seems much easier to sustain than in an ordinary industrial market.
+	\begin{itemize}
+		\item[(1)] Firms can easily identify how to share the collusive division among them.
+		\item[(2)] Bids can be used to signal proposals and to signal agreement.
+		\item[(3)] Firms' bidding is immediately and perfectly observable, so defection is immediately detected.
+		\item[(4)] Punishment is quick, easy and often costless.
+		\item[(5)] Entry in an ascending auction may be hard.
+	\end{itemize}
+\end{itemize}
+
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\ssecIIIb}
+	
+	\begin{itemize}
+		\item \emph{A first-price sealed-bid auction} is usually much more robust to colusion.
+		\item Bidders cannot exchange views through their bids.
+		\item Bidders cannot observe opponents' bids until after the auction.
+		\item Bidders cannot punish defection from any agreement during the course of the auction.
+		\item Bidders cannot deter entry easily.
+	\end{itemize}
+	
+	
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\secVI}{4.4 Robustness to Poritical Pressures}
+\section{\secVI}
+\newcommand{\ssecVIa}{4.4.1\! Economic\!\! Similarity \!$\neq$\! Political\!\! Similarity}
+\subsection{\ssecVIa}
+\begin{frame}[t]{\ssecVIa}
+	
+\begin{itemize}
+	\item Charging winners different amounts for identical properties might both
+	\begin{itemize}
+		\item[-] be awkward, and
+		\item[-] lead to cautions bidding by managements who did not want to risk the embarrassment of paying more than their rivals.
+	\end{itemize}
+	\item The gov. would be criticized if the public observed the bids which were very different from the price.  
+\end{itemize}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[t]{\ssecVIa}
+	
+\begin{itemize}
+	\item The lobbyists' arguments that their suggested change was ``small'' and made the auction more ``standard'', and also that it was ``unfair'', were \emph{politicallly} salient points,
+	\item even though they are irrelevant or meaningless from \emph{a stlictly game-theoretic} viewpoint. 
+	\item Auction designs that seem similar to economic theorists may seem very different to politicians, bureaucrats and the public,and vice versa.
+	\item Political and loibbying presshures need to be predicted and planned for in advance.
+\end{itemize}
+
+\section{4.5 (omitted)}
+\section{4.6 (omitted)}
+\section{4.7 (omitted)}
+
+\end{frame}
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\secV}{4.5 Understanding the Wider Context}
+%\section{\secV}
+%\begin{frame}[t]{\secV}
+%	
+%\begin{itemize}
+%	\item 
+%\end{itemize}
+%	
+%\end{frame}
+
+
+
+\end{document}

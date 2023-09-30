@@ -1,0 +1,1586 @@
+\documentclass[uplatex,11pt]{jsarticle}
+\usepackage[sourcehan]{pxchfon}
+\usepackage[top=25truemm,bottom=10truemm,left=15truemm,right=15truemm,includefoot]{geometry}
+\setlength{\headsep}{10truemm}
+\setlength{\textheight}{250truemm}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ascmac}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{ulem}
+\usepackage{fancybox}
+\usepackage{cancel}
+\usepackage{plext}
+\usepackage{array}
+\usepackage{url}
+\usepackage[dvipdfmx,svgnames]{xcolor}
+\usepackage{tikz}
+\usepackage{accents}
+\usepackage{tcolorbox}
+
+
+\newcommand{\OBITOP}{
+	\colorbox{black}
+		{\vbox 
+			{
+				\hsize163mm
+				\textsf{ \textcolor{white}{
+					平成29年度 春・夏学期 「経済・経営数学」
+					\hspace*{\stretch{1}}
+					平成29年6月7日提出
+					}
+				}
+				\vfil \vspace{-.5mm}
+			}
+		}
+}
+
+\newcommand{\OBITITLE}{
+	\vspace{-2mm}
+	{\vbox 
+		{
+			\hspace{\stretch{1}}
+			{\LARGE \textsf{ 
+				レポート課題 1
+				}
+			}
+			\hspace{\stretch{1}} \vfil
+		}
+	}
+}
+
+\newcommand{\OBINAME}{
+	\vspace{-2mm}
+	\colorbox{black}
+		{\vbox 
+			{
+				\hsize163mm
+				\vspace{-.5mm}
+				\hspace*{\stretch{1}}
+				\textsf{ \textcolor{white}{
+					経済学専攻\ MC1\ 
+					下平 勇太\ 
+					{\scriptsize 学籍番号}:23A17018
+					}
+				}
+				\vfil \vspace{-.7mm}
+			}
+		}
+}
+
+\newcommand{\OBIZERO}{
+	\hspace{-2.75mm}
+	\vbox{
+		\hbox{\vspace{-40mm}}
+		\hbox{\OBITOP\vspace{17mm}}
+	}
+}
+
+\newcommand{\PAGEBANGO}{
+\thepage{}/{}\pageref{LastPage}
+}
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\lhead{}
+\chead{\vspace{5mm}\OBITITLE\OBINAME}
+\rhead{}
+\lfoot{}
+\cfoot{\PAGEBANGO}
+\rfoot{}
+
+
+\newtcolorbox{irohako}[2][]{
+	colframe=#1,
+	colback=#1!5!white,
+	colbacktitle=#1!30!white,
+	coltitle=black,
+	fonttitle=\sffamily,
+	title=#2
+}
+
+\def\vekutoru#1{\mbox{\boldmath $#1$}}
+
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+\newcommand{\bibun}{\mathrm{d}}
+
+\newcommand{\maxprob}{\mathop\mathrm{maximise}\limits}
+%\newcommand{\minprob}{\mathop\mathrm{min.}\limits}
+
+\newcommand{\argumentmax}{\mathop\mathrm{arg\,max}\limits}
+
+\def\shatai#1{\makebox[2.25zw][l]{\vphantom{#1}\rotatebox{-48.8}{\scalebox{0.875}[1.143]{\rotatebox{41.2}{\smash{\rlap{#1}}}}}}}
+
+\def\maru#1{\textcircled{\scriptsize #1}}
+\def\shoumon#1{\vspace{1em}\noindent\ovalbox{\textsf{ #1 }}}
+
+\makeatletter
+\renewcommand{\theequation}{\textit{\arabic{section}-\arabic{equation}}}
+\@addtoreset{equation}{section}
+\makeatother
+
+\def\thesection{問題 1.\arabic{section}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\noindent
+\OBIZERO
+\quad
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{01.pdf}
+	\end{center}
+\end{shadebox}
+%\vspace{5mm}
+
+\shoumon{(1) - 背理法}
+
+$\mathscr{P}_1 \equiv \neg\alpha$;\quad
+$\mathscr{P}_2 \equiv (\neg\alpha \Longrightarrow \alpha)$;\quad
+$\mathscr{P}_3 \equiv (\mathscr{P}_2 \Longrightarrow \alpha)$.
+
+%\begin{table}[h]
+\begin{center}
+\begin{tabular}{c|ccc} \hline\hline
+		$\alpha$ & $\mathscr{P}_1$ & $\mathscr{P}_2$ & $\mathscr{P}_3$ \\ \hline
+		T & F & T & \textbf{T} \\ 
+		F & T & F & \textbf{T} \\ \hline\hline
+\end{tabular} 
+\end{center}
+%\end{table}
+
+$\alpha$の真偽がいずれの場合も，$(\neg\alpha \Longrightarrow \alpha) \Longrightarrow \alpha\ (\text{i.e.,}\ \mathscr{P}_3)$は真であり，この命題は恒真命題である．
+
+
+\shoumon{(1) - 純粋仮言三段論法}
+
+$\mathscr{P}_1 \equiv (\alpha \Longrightarrow \beta)$;\quad
+$\mathscr{P}_2 \equiv (\beta \Longrightarrow \gamma)$;\quad
+$\mathscr{P}_3 \equiv \mathscr{P}_1 \wedge \mathscr{P}_2$;\quad
+$\mathscr{P}_4 \equiv (\alpha \Longrightarrow \gamma)$;\quad
+$\mathscr{P}_5 \equiv (\mathscr{P}_3 \Longrightarrow \mathscr{P}_4)$.
+
+\begin{center}
+	\begin{tabular}{ccc|ccccc} \hline\hline
+		$\alpha$ & $\beta$ & $\gamma$ & $\mathscr{P}_1$ & $\mathscr{P}_2$ & $\mathscr{P}_3$ & $\mathscr{P}_4$ & $\mathscr{P}_5$ \\ \hline
+		T & T & T & T & T & T & T & \textbf{T} \\
+		T & T & F & T & F & F & F & \textbf{T} \\
+		T & F & T & F & T & F & T & \textbf{T} \\
+		T & F & F & F & T & F & F & \textbf{T} \\
+		F & T & T & T & T & T & T & \textbf{T} \\
+		F & T & F & T & F & F & T & \textbf{T} \\
+		F & F & T & T & T & T & T & \textbf{T} \\
+		F & F & F & T & T & T & T & \textbf{T} \\ \hline\hline
+	\end{tabular} 
+\end{center}
+
+$\alpha$，$\beta$，$\gamma$それぞれの真偽がいずれの場合であっても，$[(\alpha \Longrightarrow \beta) \wedge (\beta \Longrightarrow \gamma)] \Longrightarrow (\alpha \Longrightarrow \gamma)\ (\text{i.e.,}\ \mathscr{P}_5)$は真であり，この命題は恒真命題である．
+
+\newpage
+\shoumon{(1) - 構成的仮言三段論法}
+
+$\mathscr{P}_1 \equiv (\alpha \Longrightarrow \beta)$;\quad
+$\mathscr{P}_2 \equiv \alpha \wedge \mathscr{P}_1$;\quad
+$\mathscr{P}_3 \equiv (\mathscr{P}_2 \Longrightarrow \beta)$.
+
+\begin{center}
+	\begin{tabular}{cc|ccc} \hline\hline
+		$\alpha$ & $\beta$ & $\mathscr{P}_1$ & $\mathscr{P}_2$ & $\mathscr{P}_3$ \\ \hline
+		T & T & T & T & \textbf{T} \\
+		T & F & F & F & \textbf{T} \\
+		F & T & T & F & \textbf{T} \\
+		F & F & T & F & \textbf{T} \\ \hline\hline
+	\end{tabular} 
+\end{center}
+
+$\alpha$，$\beta$，$\gamma$それぞれの真偽がいずれの場合であっても，$[\alpha \wedge (\alpha \Longrightarrow \beta)] \Longrightarrow \beta \ (\text{i.e.,}\ \mathscr{P}_3)$は真であり，この命題は恒真命題である．
+
+
+\shoumon{(1) - 構成的仮言三段論法・否定形}
+
+$\mathscr{P}_1 \equiv \neg\beta$;\quad
+$\mathscr{P}_2 \equiv (\alpha \Longrightarrow \beta)$;\quad
+$\mathscr{P}_3 \equiv \mathscr{P}_1 \wedge \mathscr{P}_2$;\quad
+$\mathscr{P}_4 \equiv \neg\alpha$;\quad
+$\mathscr{P}_5 \equiv (\mathscr{P}_3 \Longrightarrow \mathscr{P}_4)$.
+
+\begin{center}
+	\begin{tabular}{cc|ccccc} \hline\hline
+		$\alpha$ & $\beta$ & $\mathscr{P}_1$ & $\mathscr{P}_2$ & $\mathscr{P}_3$ & $\mathscr{P}_4$ & $\mathscr{P}_5$ \\ \hline
+		T & T & F & T & F & F & \textbf{T} \\
+		T & F & T & F & F & F & \textbf{T} \\
+		F & T & F & T & F & T & \textbf{T} \\
+		F & F & T & T & T & T & \textbf{T} \\ \hline\hline
+	\end{tabular} 
+\end{center}
+
+$\alpha$，$\beta$，$\gamma$それぞれの真偽がいずれの場合であっても，$[\neg\beta \wedge (\alpha \Longrightarrow \beta)] \Longrightarrow \neg\alpha \ (\text{i.e.,}\ \mathscr{P}_5)$は真であり，この命題は恒真命題である．
+
+
+\shoumon{(2) - 分配律1}
+
+$\mathscr{P}_1 \equiv \alpha \vee \beta$;\quad
+$\mathscr{P}_2 \equiv \mathscr{P}_1 \wedge \gamma$;\quad
+$\mathscr{P}_3 \equiv \alpha \wedge \gamma$;\quad
+$\mathscr{P}_4 \equiv \beta \wedge \gamma$;\quad
+$\mathscr{P}_5 \equiv \mathscr{P}_3 \vee \mathscr{P}_4$.
+
+\begin{center}
+	\begin{tabular}{ccc|ccccc} \hline\hline
+		$\alpha$ & $\beta$ & $\gamma$ & $\mathscr{P}_1$ & $\mathscr{P}_2$ & $\mathscr{P}_3$ & $\mathscr{P}_4$ & $\mathscr{P}_5$ \\ \hline
+		T & T & T & T & \textbf{T} & T & T & \textbf{T} \\
+		T & T & F & T & \textbf{F} & F & F & \textbf{F} \\
+		T & F & T & T & \textbf{T} & T & F & \textbf{T} \\
+		T & F & F & F & \textbf{F} & F & F & \textbf{F} \\
+		F & T & T & T & \textbf{T} & F & T & \textbf{T} \\
+		F & T & F & T & \textbf{F} & F & F & \textbf{F} \\
+		F & F & T & F & \textbf{F} & F & F & \textbf{F} \\
+		F & F & F & F & \textbf{F} & F & F & \textbf{F} \\ \hline\hline
+	\end{tabular} 
+\end{center}
+
+$\alpha$，$\beta$，$\gamma$それぞれの真偽がいずれの場合であっても，$(\alpha \vee \beta) \wedge \gamma\ (\text{i.e.,}\ \mathscr{P}_2)$と$(\alpha \wedge \gamma) \vee (\beta \wedge \gamma)\ (\text{i.e.,}\ \mathscr{P}_5)$は真偽が一致するため，この2つの命題は等価である．
+
+\newpage
+\shoumon{(2) - 分配律2}
+
+$\mathscr{P}_1 \equiv \alpha \wedge \beta$;\quad
+$\mathscr{P}_2 \equiv \mathscr{P}_1 \vee \gamma$;\quad
+$\mathscr{P}_3 \equiv \alpha \vee \gamma$;\quad
+$\mathscr{P}_4 \equiv \beta \vee \gamma$;\quad
+$\mathscr{P}_5 \equiv \mathscr{P}_3 \wedge \mathscr{P}_4$.
+
+\begin{center}
+	\begin{tabular}{ccc|ccccc} \hline\hline
+		$\alpha$ & $\beta$ & $\gamma$ & $\mathscr{P}_1$ & $\mathscr{P}_2$ & $\mathscr{P}_3$ & $\mathscr{P}_4$ & $\mathscr{P}_5$ \\ \hline
+		T & T & T & T & \textbf{T} & T & T & \textbf{T} \\
+		T & T & F & T & \textbf{T} & T & T & \textbf{T} \\
+		T & F & T & F & \textbf{T} & T & T & \textbf{T} \\
+		T & F & F & F & \textbf{F} & T & F & \textbf{F} \\
+		F & T & T & F & \textbf{T} & T & T & \textbf{T} \\
+		F & T & F & F & \textbf{F} & F & T & \textbf{F} \\
+		F & F & T & F & \textbf{T} & T & T & \textbf{T} \\
+		F & F & F & F & \textbf{F} & F & F & \textbf{F} \\ \hline\hline
+	\end{tabular} 
+\end{center}
+
+$\alpha$，$\beta$，$\gamma$それぞれの真偽がいずれの場合であっても，$(\alpha \wedge \beta) \vee \gamma\ (\text{i.e.,}\ \mathscr{P}_2)$と$(\alpha \vee \gamma) \wedge (\beta \vee \gamma)\ (\text{i.e.,}\ \mathscr{P}_5)$は真偽が一致するため，この2つの命題は等価である．
+
+
+\shoumon{(2) - 背理法}
+
+$\mathscr{P}_1 \equiv \neg\beta$;\quad
+$\mathscr{P}_2 \equiv \alpha \wedge \mathscr{P}_1$;\quad
+$\mathscr{P}_3 \equiv (\mathscr{P}_2 \Longrightarrow \varphi)$;\quad
+$\mathscr{P}_4 \equiv (\alpha \Longrightarrow \beta)$.
+
+\begin{center}
+	\begin{tabular}{ccc|cccc} \hline\hline
+		$\alpha$ & $\beta$ & $\varphi$ & $\mathscr{P}_1$ & $\mathscr{P}_2$ & $\mathscr{P}_3$ & $\mathscr{P}_4$ \\ \hline
+		T & T & F & F & F & \textbf{T} & \textbf{T} \\
+		T & F & F & T & T & \textbf{F} & \textbf{F} \\
+		F & T & F & F & F & \textbf{T} & \textbf{T} \\
+		F & F & F & T & F & \textbf{T} & \textbf{T} \\ \hline\hline
+	\end{tabular} 
+\end{center}
+
+$\alpha$，$\beta$，$\gamma$それぞれの真偽がいずれの場合であっても，$(\alpha \wedge \neg\beta) \Longrightarrow \varphi\ (\text{i.e.,}\ \mathscr{P}_3)$と$\alpha \Longrightarrow \beta\ (\text{i.e.,}\ \mathscr{P}_4)$は真偽が一致するため，この2つの命題は等価である．
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{02\_1.pdf}\\
+		\texttt{02\_2.pdf}
+	\end{center}
+\end{shadebox}
+%\vspace{5mm}
+
+\shoumon{(a)}
+
+\begin{align*}
+	&\neg
+	\big[
+	(\forall \varepsilon > 0)
+	(\exists N \in \mathbb{N})
+	(\forall n, \forall m \in \mathbb{N})
+	\ 
+	(n, m \geq N\ 
+	\Longrightarrow\ 
+	|a_n-a_m|<\varepsilon)
+	\big] \\
+	\equiv\ &
+	(\exists \varepsilon >0)
+	\neg
+	\big[
+	(\exists N \in \mathbb{N})
+	(\forall n, \forall m \in \mathbb{N})
+	\ 
+	(n, m \geq N\ 
+	\Longrightarrow\ 
+	|a_n-a_m|<\varepsilon)
+	\big] \\
+	\equiv\ &
+	(\exists \varepsilon >0)
+	(\forall N \in \mathbb{N})
+	\neg
+	\big[
+	(\forall n, \forall m \in \mathbb{N})
+	\ 
+	(n, m \geq N\ 
+	\Longrightarrow\ 
+	|a_n-a_m|<\varepsilon)
+	\big] \\
+	\equiv\ &
+	(\exists \varepsilon >0)
+	(\forall N \in \mathbb{N})
+	(\exists n, \exists m \in \mathbb{N})
+	\ 
+	\neg 
+	(n, m \geq N\ 
+	\Longrightarrow\ 
+	|a_n-a_m|<\varepsilon) \\
+	\equiv\ &
+	\uwave{
+	(\exists \varepsilon >0)
+	(\forall N \in \mathbb{N})
+	(\exists n, \exists m \in \mathbb{N})
+	\ 
+	[(n, m \geq N) \wedge (|a_n-a_m| \geq \varepsilon)]
+	}.
+\end{align*}
+ただし最後の変形で
+\begin{equation*}
+	\neg(\alpha\Longrightarrow\beta)
+	\equiv
+	\neg[(\neg\alpha) \vee \beta]
+	\equiv
+	[\neg(\neg\alpha) \wedge (\neg\beta)]
+	\equiv
+	[\alpha \wedge (\neg\beta)]
+\end{equation*}
+なる関係を用いた．
+
+
+\shoumon{(b)}
+
+(1.2)
+\begin{align*}
+	&\neg
+	\big[
+	(\forall x \in \mathbb{R})
+	(\forall \varepsilon > 0)
+	(\exists \delta > 0)
+	(\forall y \in \mathbb{R})
+	\ 
+	(|x-y| < \delta\ 
+	\Longrightarrow\ 
+	|f(x)-f(y)| < \varepsilon)
+	\big] \\
+	\equiv\ &
+	(\exists x \in \mathbb{R})
+	(\exists \varepsilon > 0)
+	\neg
+	\big[
+	(\exists \delta > 0)
+	(\forall y \in \mathbb{R})
+	\ 
+	(|x-y| < \delta\ 
+	\Longrightarrow\ 
+	|f(x)-f(y)| < \varepsilon)
+	\big] \\
+	\equiv\ &
+	(\exists x \in \mathbb{R})
+	(\exists \varepsilon > 0)
+	(\forall \delta > 0)
+	\neg
+	\big[
+	(\forall y \in \mathbb{R})
+	\ 
+	(|x-y| < \delta\ 
+	\Longrightarrow\ 
+	|f(x)-f(y)| < \varepsilon)
+	\big] \\
+	\equiv\ &
+	(\exists x \in \mathbb{R})
+	(\exists \varepsilon > 0)
+	(\forall \delta > 0)
+	(\exists y \in \mathbb{R})
+	\ 
+	\neg
+	(|x-y| < \delta\ 
+	\Longrightarrow\ 
+	|f(x)-f(y)| < \varepsilon)
+	\big] \\
+	\equiv\ &
+	\uwave{
+	(\exists x \in \mathbb{R})
+	(\exists \varepsilon > 0)
+	(\forall \delta > 0)
+	(\exists y \in \mathbb{R})
+	\ 
+	[(|x-y| < \delta)
+	\wedge
+	(|f(x)-f(y)| \geq \varepsilon)]
+	}.
+\end{align*}
+
+
+(1.3)
+\begin{align}
+	&\neg
+	\big[
+	(\forall \varepsilon > 0)
+	(\exists \delta > 0)
+	(\forall x \in \mathbb{R})
+	(\forall y \in \mathbb{R})
+	\ 
+	(|x-y| < \delta\ 
+	\Longrightarrow\ 
+	|f(x)-f(y)| < \varepsilon)
+	\big] \notag \\
+	\equiv\ &
+	(\exists \varepsilon > 0)
+	\neg
+	\big[
+	(\exists \delta > 0)
+	(\forall x \in \mathbb{R})
+	(\forall y \in \mathbb{R})
+	\ 
+	(|x-y| < \delta\ 
+	\Longrightarrow\ 
+	|f(x)-f(y)| < \varepsilon)
+	\big] \notag \\
+	\equiv\ &
+	(\exists \varepsilon > 0)
+	(\forall \delta > 0)
+	\neg
+	\big[
+	(\forall x \in \mathbb{R})
+	(\forall y \in \mathbb{R})
+	\ 
+	(|x-y| < \delta\ 
+	\Longrightarrow\ 
+	|f(x)-f(y)| < \varepsilon)
+	\big] \notag \\
+	\equiv\ &
+	(\exists \varepsilon > 0)
+	(\forall \delta > 0)
+	(\exists x \in \mathbb{R})
+	(\exists y \in \mathbb{R})
+	\ 
+	\neg
+	(|x-y| < \delta\ 
+	\Longrightarrow\ 
+	|f(x)-f(y)| < \varepsilon)
+	\big] \notag \\
+	\equiv\ &
+	\uwave{
+	(\exists \varepsilon > 0)
+	(\forall \delta > 0)
+	(\exists x \in \mathbb{R})
+	(\exists y \in \mathbb{R})
+	\ 
+	[(|x-y| < \delta)
+	\wedge
+	(|f(x)-f(y)| \geq \varepsilon)]
+	}.
+	\label{eq1}
+\end{align}
+
+
+\shoumon{(c)}
+
+たとえば
+\begin{equation*}
+	f(\xi) = \xi^2
+\end{equation*}
+は連続ではあるが，一様連続ではない．
+
+($\because$)
+
+恣意的に$\varepsilon=1/2$とする．任意の$\delta>0$を用いて，$x \geq 1/(2\delta)$，$y=x+\delta/2$とする．
+このとき，
+\begin{equation*}
+	|x-y| =\left|x-\left(x+\frac{\delta}{2}\right)\right| = \frac{\delta}{2}
+	< \delta
+\end{equation*}
+を満たす．
+また，
+\begin{equation*}
+	|f(x)-f(y)|
+	= \left|x^2-\left(x+\frac{\delta}{2}\right)^2\right| 
+	= x\delta + \frac{\delta^2}{4} 
+	\geq \frac{1}{2} + \frac{\delta^2}{4} 
+	\geq \frac{1}{2}
+	= \varepsilon
+\end{equation*}
+も同時に満たす．
+これで命題(\ref{eq1})が示されたため，$f(\xi)=\xi^2$が一様連続ではないことが分かった． \qed
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{03.pdf}
+	\end{center}
+\end{shadebox}
+%\vspace{5mm}
+
+\shoumon{分配律 1}
+
+$(A \cap B) \cup C \subset (A \cup C) \cap (B \cup C)$
+および
+$(A \cap B) \cup C \supset (A \cup C) \cap (B \cup C)$
+が成立するとき，
+$(A \cap B) \cup C = (A \cup C) \cap (B \cup C)$
+である．
+以下でそれぞれを順番に示す．
+
+($\subset$)
+
+$\forall x \in (A \cap B) \cup C$について，
+\begin{equation*}
+	x \in A \cap B,
+	\quad \text{または} \quad
+	x \in C
+\end{equation*}
+である．
+いま，
+\begin{equation*}
+	A \cap B \ (\subset A) \subset A \cup C, \quad
+	A \cap B \ (\subset B) \subset B \cup C
+\end{equation*}
+であるから，
+\begin{equation*}
+	x \in A \cap B
+	\quad \Longrightarrow \quad
+	x \in (A \cup C) \cap (B \cup C).
+\end{equation*}
+また，
+\begin{equation*}
+	C \subset A \cup C, \quad
+	C \subset B \cup C
+\end{equation*}
+であるから，
+\begin{equation*}
+	x \in C
+	\quad \Longrightarrow \quad
+	x \in (A \cup C) \cap (B \cup C).
+\end{equation*}
+したがって，
+$x \in A \cap B$ と $x \in C$
+いずれの場合であっても
+$x \in (A \cup C) \cap (B \cup C)$
+が成立し，
+
+$(A \cap B) \cup C \subset (A \cup C) \cap (B \cup C)$
+が示された．
+
+($\supset$)
+
+$\forall x \in (A \cup C) \cap (B \cup C)$について，
+\begin{equation*}
+	x \in A \cup C,
+	\quad \text{かつ} \quad
+	x \in B \cup C
+\end{equation*}
+である．
+いま，
+\begin{equation*}
+	x \in C,
+	\quad \text{または} \quad
+	x \not\in C
+\end{equation*}
+が自明である．
+$x \not\in C$のとき，
+\begin{equation*}
+	x \in A \cup C
+	\ \text{かつ}\ 
+	x \not\in C
+	\quad \Longrightarrow \quad
+	x \in A,
+\end{equation*}
+および，
+\begin{equation*}
+	x \in B \cup C
+	\ \text{かつ}\ 
+	x \not\in C
+	\quad \Longrightarrow \quad
+	x \in B
+\end{equation*}
+が同時に成り立つ．
+すなわち，$x \not\in C$のとき$x \in A \cap B$である．
+したがって，
+\begin{equation*}
+	x \in C,
+	\quad \text{または} \quad
+	x \in A \cap B
+\end{equation*}
+であり，
+$x \in (A \cap B) \cup C$
+が成立し，
+$(A \cap B) \cup C \supset (A \cup C) \cap (B \cup C)$
+が示された．
+\qed
+
+
+\shoumon{分配律 2}
+
+$(A \cup B) \cap C \subset (A \cap C) \cup (B \cap C)$
+および
+$(A \cup B) \cap C \supset (A \cap C) \cup (B \cap C)$
+が成立するとき，
+$(A \cup B) \cap C = (A \cap C) \cup (B \cap C)$
+である．
+以下でそれぞれを順番に示す．
+
+($\subset$)
+
+$\forall x \in (A \cup B) \cap C$について，
+\begin{equation*}
+	x \in A \cup B,
+	\quad \text{かつ} \quad
+	x \in C
+\end{equation*}
+である．
+いま，$x \in A \cup B$より
+\begin{equation*}
+	x \in A,
+	\quad \text{または} \quad
+	x \in B
+\end{equation*}
+であるから，
+\begin{equation*}
+	x \in A,
+	\quad \text{かつ} \quad
+	x \in C,
+\end{equation*}
+すなわち$x \in A \cap C$，または，
+\begin{equation*}
+	x \in B,
+	\quad \text{かつ} \quad
+	x \in C,
+\end{equation*}
+すなわち$x \in B \cap C$が成立する．
+したがって
+$x \in (A \cap C) \cup (B \cap C)$
+が成立し，
+$(A \cup B) \cap C \subset (A \cap C) \cup (B \cap C)$
+が示された．
+
+($\supset$)
+
+$\forall x \in (A \cap C) \cup (B \cap C)$について，
+\begin{equation*}
+	x \in A \cap C,
+	\quad \text{または} \quad
+	x \in B \cap C
+\end{equation*}
+であり，言い換えれば，
+\begin{equation*}
+	x \in A,
+	\quad \text{かつ} \quad
+	x \in C
+\end{equation*}
+または，
+\begin{equation*}
+	x \in B,
+	\quad \text{かつ} \quad
+	x \in C
+\end{equation*}
+である．
+いま，
+\begin{equation*}
+	A \subset A \cup B,
+	\quad
+	B \subset A \cup B
+\end{equation*}
+であるから，$x \in A \cap C$ならば，
+\begin{equation*}
+	x \in A \cup B
+	\quad \text{かつ} \quad
+	x \in C,
+\end{equation*}
+すなわち，$x \in (A \cup B) \cap C$，
+$x \in B \cap C$ならば，
+\begin{equation*}
+	x \in A \cup B
+	\quad \text{かつ} \quad
+	x \in C.
+\end{equation*}
+すなわち，$x \in (A \cup B) \cap C$．
+したがって，
+$x \in A \cap C$と$x \in B \cap C$
+いずれの場合であっても$x \in (A \cup B) \cap C$
+が成立し，
+$(A \cup B) \cap C \supset (A \cap C) \cup (B \cap C)$
+が示された．
+\qed
+
+
+\shoumon{一般化 De Morgen 律 1}
+
+$C \setminus (A \cap B) \subset (C \setminus A) \cup (C \setminus B)$
+および
+$C \setminus (A \cap B) \supset (C \setminus A) \cup (C \setminus B)$
+が成立するとき，
+$C \setminus (A \cap B) = (C \setminus A) \cup (C \setminus B)$
+である．
+以下でそれぞれを順番に示す．
+
+($\subset$)
+
+$\forall x \in C \setminus (A \cap B)$について，
+\begin{equation*}
+	x \in  C,
+	\quad \text{かつ} \quad
+	x \not\in A \cap B
+\end{equation*}
+である．
+$x \not\in A \cap B$より，
+\begin{equation*}
+	x \not\in A,
+	\quad \text{または} \quad
+	x \not\in B
+\end{equation*}
+であるから，
+\begin{equation*}
+	x \in C,
+	\quad \text{かつ} \quad
+	x \not\in A,
+\end{equation*}
+すなわち$x \in C \setminus A$，または，
+\begin{equation*}
+	x \in C,
+	\quad \text{かつ} \quad
+	x \not\in B,
+\end{equation*}
+すなわち$x \in C \setminus B$が成立する．
+したがって
+$x \in (C \setminus A) \cup (C \setminus B)$
+が成立し，
+$C \setminus (A \cap B) \subset (C \setminus A) \cup (C \setminus B)$
+が示された．
+
+
+($\supset$)
+
+$\forall x \in (C \setminus A) \cup (C \setminus B)$について，
+\begin{equation*}
+	x \in  C \setminus A,
+	\quad \text{または} \quad
+	x \in C \setminus B
+\end{equation*}
+であり，言い換えれば，
+\begin{equation*}
+	x \in  C,
+	\quad \text{かつ} \quad
+	x \not\in A
+\end{equation*}
+または，
+\begin{equation*}
+	x \in  C,
+	\quad \text{かつ} \quad
+	x \not\in B
+\end{equation*}
+である．
+$A \supset A \cap B$より，
+\begin{equation*}
+	x \not\in A
+	\quad \Longrightarrow \quad
+	x \not\in A \cap B.
+\end{equation*}
+同様にして，
+\begin{equation*}
+	x \not\in B
+	\quad \Longrightarrow \quad
+	x \not\in A \cap B.
+\end{equation*}
+したがって，
+$x \in  C \setminus A$と$x \in C \setminus B$
+いずれの場合であっても
+\begin{equation*}
+	x \in  C,
+	\quad \text{かつ} \quad
+	x \not\in A \cap B,
+\end{equation*}
+すなわち$x \in C \setminus (A \cap B)$が成立し，
+$C \setminus (A \cap B) \supset (C \setminus A) \cup (C \setminus B)$
+が示された．
+\qed
+
+
+\shoumon{一般化 De Morgen 律 2}
+
+$C \setminus (A \cup B) \subset (C \setminus A) \cap (C \setminus B)$
+および
+$C \setminus (A \cup B) \supset (C \setminus A) \cap (C \setminus B)$
+が成立するとき，
+$C \setminus (A \cup B) = (C \setminus A) \cap (C \setminus B)$
+である．
+以下でそれぞれを順番に示す．
+
+
+($\subset$)
+
+$\forall x \in C \setminus (A \cup B)$について，
+\begin{equation*}
+	x \in  C,
+	\quad \text{かつ} \quad
+	x \not\in A \cup B
+\end{equation*}
+である．
+$x \not\in A \cup B$より，
+\begin{equation*}
+	x \not\in A,
+	\quad \text{かつ} \quad
+	x \not\in B
+\end{equation*}
+であるから，
+\begin{equation*}
+	x \in C,
+	\quad \text{かつ} \quad
+	x \not\in A,
+\end{equation*}
+すなわち$x \in C \setminus A$，かつ，
+\begin{equation*}
+	x \in C,
+	\quad \text{かつ} \quad
+	x \not\in B,
+\end{equation*}
+すなわち$x \in C \setminus B$が成立する．
+したがって
+$x \in (C \setminus A) \cap (C \setminus B)$
+が成立し，
+$C \setminus (A \cup B) \subset (C \setminus A) \cap (C \setminus B)$
+が示された．
+
+
+($\supset$)
+
+$\forall x \in (C \setminus A) \cap (C \setminus B)$について，
+\begin{equation*}
+	x \in  C \setminus A,
+	\quad \text{かつ} \quad
+	x \in C \setminus B
+\end{equation*}
+であり，言い換えれば，
+\begin{equation*}
+	x \in  C,
+	\quad \text{かつ} \quad
+	x \not\in A
+\end{equation*}
+かつ，
+\begin{equation*}
+	x \in  C,
+	\quad \text{かつ} \quad
+	x \not\in B
+\end{equation*}
+である．
+$x \not\in A$かつ$x \not\in B$より
+\begin{equation*}
+	x \not\in A \cup B.
+\end{equation*}
+したがって，
+$x \in C \setminus (A \cup B)$が成立し，
+$C \setminus (A \cup B) \supset (C \setminus A) \cap (C \setminus B)$
+が示された．
+\qed
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{04.pdf}
+	\end{center}
+\end{shadebox}
+\vspace{5mm}
+
+(1)--(4)の集合をそれぞれ，$A_1$，$A_2$，$A_3$，$A_4$とする．
+
+\shoumon{(1)}
+
+\uwave{$\sup A_1 = \pi$}．$\pi \not\in A_1$より\uwave{$\max A_1$は存在しない}．
+
+\uwave{$\inf A_1 = \min A_1 = 0$}\ $\in A_1$．
+
+\shoumon{(2)}
+
+$\sup A_2 = u > 0$が存在すると仮定．
+$A_2$の定義より$(-1)^\nu \nu = u$を満たす$\nu \in \mathbb{N}$が存在する．
+また，$u > 0$なる仮定より$\nu$は偶数である．
+このとき，$\nu + 2 \in \mathbb{N}$より，
+$(-1)^{\nu + 2} (\nu + 2) \in A_2$．
+ここで，
+$(-1)^{\nu + 2} (\nu + 2) = (-1)^{\nu} (\nu + 2) = u + (-1)^{\nu}2 > u$
+より，$u$が$A_2$の上限であることに矛盾する．
+したがって\uwave{$A_2$に上限は存在しない}．
+\uwave{$\max A_2$も存在しない}．
+
+同様にして，\uwave{$\inf A_2$，$\min A_2$も存在しない}．
+
+
+\shoumon{(3)}
+
+\uwave{$\sup A_3 = \max A_3 = \ln 1 = 0$}\ $\in A_3$．
+
+$\ln x \xrightarrow{x \rightarrow +0} -\infty$であるから，
+\uwave{$\inf A_3$，$\min A_3$は存在しない}．
+
+
+\shoumon{(4)}
+
+$e^x$ は $(e^x)' = e^x > 0 \ (\forall x \in \mathbb{R})$ より単調増加関数である．
+
+$\ln x \xrightarrow{x \rightarrow \infty} \infty$であるから，
+\uwave{$\sup A_4$，$\max A_4$は存在しない}．
+
+$e^x$の単調性と$\ln x \xrightarrow{x \rightarrow -\infty} 0$，
+および
+$e^x > 0 \ (\forall x \in \mathbb{R})$より
+\uwave{$\inf A_4=0$}．
+しかし，$0 \not\in A_4$ゆえ，\uwave{$\min A_4$は存在しない}．
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{05.pdf}
+	\end{center}
+\end{shadebox}
+%\vspace{5mm}
+%
+%\begin{irohako}[blue]{収束列の定義}
+%	数列$\{a_n\}_{n \in \mathbb{N}}$が収束列であるとは，
+%	\begin{equation*}
+%		(\exists \alpha \in \mathbb{R})
+%		(\forall \epsilon > 0)
+%		(\exists N \in \mathbb{N})
+%		(\forall n \in \mathbb{N})
+%		\big[
+%		n \geq N
+%		\ \Longrightarrow\ 
+%		|a_n -\alpha| < \epsilon
+%		\big]
+%	\end{equation*}
+%	が成り立つこと．
+%\end{irohako}
+%
+%\begin{irohako}[blue]{Caucy列の定義}
+%	数列$\{a_n\}_{n \in \mathbb{N}}$がCaucy列であるとは，
+%	\begin{equation*}
+%	(\forall \epsilon > 0)
+%	(\exists N \in \mathbb{N})
+%	(\forall m, \forall n \in \mathbb{N})
+%	\big[
+%	(m \geq N)
+%	\wedge
+%	(n \geq N)
+%	\ \Longrightarrow\ 
+%	|a_m -a_n| < \epsilon
+%	\big]
+%	\end{equation*}
+%	が成り立つこと．
+%\end{irohako}
+%
+%\begin{irohako}[magenta]{命題 1}
+%	収束列はCaucy列である．
+%\end{irohako}
+%
+%($\because$)
+%
+%$\{a_n\}_{n \in \mathbb{N}}$が$a_n \longrightarrow \alpha$ なる収束列であるとする．
+%以下では任意の$\epsilon >0$を固定して考える．
+%\textsf{収束列の定義}から，$\epsilon/2$に対してある$N$が存在して，
+%\begin{align*}
+%	n \geq N \ \Longrightarrow\ |a_n-\alpha| < \frac{\epsilon}{2},
+%	\quad
+%	m \geq N \ \Longrightarrow\ |a_m-\alpha| < \frac{\epsilon}{2}
+%\end{align*}
+%が成立．
+%このとき，任意の$m, n \geq N$に対して，
+%\begin{equation*}
+%	|a_m - a_n| \underset{\text{\scriptsize (三角不等式)}}{\leq} |a_n-\alpha| + |a_m-\alpha| \leq \epsilon
+%\end{equation*}
+%が成立．
+%\textsf{収束列の定義}より，数列$\{a_n\}_{n \in \mathbb{N}}$はCaucy列でもある．
+%以上より\textsf{命題1}は示された．
+%\qed
+%
+%また，以下も成立する．
+%\begin{irohako}[magenta]{命題 1 の対偶}
+%	Caucy列でないならば，収束列ではない．
+%\end{irohako}
+%ここで，\textsf{問題 1.2 (a)}より以下が分かっている．
+%\begin{irohako}[magenta]{Caucy列の定義の否定}
+%	数列$\{a_n\}_{n \in \mathbb{N}}$がCaucy列でないとは，
+%	\begin{equation*}
+%		(\exists \epsilon > 0)
+%		(\forall N \in \mathbb{N})
+%		(\exists m, \exists n \in \mathbb{N})
+%		\big[
+%		(m, n \geq N)
+%		\wedge
+%		(|a_m -a_n| \geq \epsilon)
+%		\big]
+%	\end{equation*}
+%	が成り立つこと．
+%\end{irohako}
+
+\shoumon{(1)}
+
+$0 < a < 1$の場合，数列$\{a_n\}_{n \in \mathbb{N}}$は\uwave{0}に収束する．
+%し，
+%\begin{equation*}
+%	\lim_{n\rightarrow \infty} a_n = \uwave{0}.
+%\end{equation*}
+
+$a = 1$の場合，数列$\{a_n\}_{n \in \mathbb{N}}$は収束し，
+\begin{equation*}
+\lim_{n\rightarrow \infty} a_n = \lim_{n\rightarrow \infty} 1^n = \uwave{1}.
+\end{equation*}
+
+$a > 1$の場合，数列$\{a_n\}_{n \in \mathbb{N}}$は\uwave{収束しない}
+%\footnote{
+%	数列がCaucy列でないことを示すことによって，収束列ではないことを示す．\\
+%	$0 < \epsilon < \infty$を仮定する．
+%	任意の自然数$N$に対して$m=N$，$(m<)\ n \longrightarrow \infty$を仮定すると，
+%	$|a_m-a_n| = \infty \geq \epsilon$．
+%	したがってこの数列はCaucy列ではなく，収束しない．
+%	\qed
+%}
+．
+なんとなればすなわち，任意の$a > 1$に対して
+\begin{equation*}
+	\lim_{n\rightarrow \infty} a_n = \lim_{n\rightarrow \infty} a^n = \infty.
+\end{equation*}
+
+
+\shoumon{(2)}
+
+$-\infty < a < 0$の場合，数列$\{a_n\}_{n \in \mathbb{N}}$は\uwave{0}に収束する．
+%し，
+%\begin{equation*}
+%	\lim_{n\rightarrow \infty} a_n = \uwave{0}.
+%\end{equation*}
+
+$a = 0$の場合，数列$\{a_n\}_{n \in \mathbb{N}}$は収束し，
+\begin{equation*}
+	\lim_{n\rightarrow \infty} a_n = \lim_{n\rightarrow \infty} n^0 = \uwave{1}.
+\end{equation*}
+
+$0 < a < \infty$の場合，数列$\{a_n\}_{n \in \mathbb{N}}$は\uwave{収束しない}．
+なんとなればすなわち，任意の$a > 0$に対して
+\begin{equation*}
+	\lim_{n\rightarrow \infty} a_n = \lim_{n\rightarrow \infty} n^a = \infty.
+\end{equation*}
+
+
+\shoumon{(3)}
+
+数列$\{a_n\}_{n \in \mathbb{N}}$は\uwave{0}に収束する．
+なんとなればすなわち，$n \longrightarrow \infty$の極限において
+$a^n \gg n^b \ (\text{for}\ \forall a>1,\ \forall b>0)$であるから，
+\begin{equation*}
+	\lim_{n\rightarrow \infty} a_n = 0.
+\end{equation*}
+
+
+\shoumon{(4)}
+
+数列$\{a_n\}_{n \in \mathbb{N}}$は\uwave{1}に収束する．
+なんとなればすなわち，$n \longrightarrow \infty$の極限において
+$1/n \longrightarrow 0$であるから，
+\begin{equation*}
+	\lim_{n\rightarrow \infty} a_n = a^0 = 1.
+\end{equation*}
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{06.pdf}
+	\end{center}
+\end{shadebox}
+\vspace{5mm}
+
+式(1.4)を変形することにより，
+\begin{equation*}
+a_n = \frac{1}{\sqrt{n+1}+\sqrt{n}}
+\end{equation*}
+が得られる．
+$\forall m > \forall n$に対して，
+\begin{align*}
+	a_m - a_n
+	& = \frac{1}{\sqrt{m+1}+\sqrt{m}} - \frac{1}{\sqrt{n+1}+\sqrt{n}} \\
+	& = -\frac{\sqrt{m+1}-\sqrt{n+1}}{(\sqrt{m+1}+\sqrt{m})(\sqrt{n+1}+\sqrt{n})} \\
+	& < 0
+\end{align*}
+より，この数列は単調減少である．
+また，
+\begin{equation*}
+	\lim_{n\rightarrow \infty} a_n
+	= \lim_{n\rightarrow \infty} \frac{1}{\sqrt{n+1}+\sqrt{n}}
+	= 0
+\end{equation*}
+より，この数列は0に収束する．
+\qed
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{07.pdf}
+	\end{center}
+\end{shadebox}
+%\vspace{5mm}
+
+\shoumon{(1)}
+
+$n$個の$(n+1)/n$と1について，$\text{（相加平均）} \geq \text{（相乗平均）}$であるから，
+\begin{alignat*}{2}
+	&&\frac{n\cdot\frac{n+1}{n}+1}{n+1}
+	&\geq
+	\left[\left( \frac{n+1}{n} \right)^n \cdot 1\right]^{\frac{1}{n+1}} \\
+	\Longrightarrow\quad
+	&&\frac{n+2}{n+1}
+	&\geq
+	\left( \frac{n+1}{n} \right)^{\frac{n}{n+1}} \\
+	\Longrightarrow\quad
+	&&\left(\frac{n+2}{n+1}\right)^{{n+1}}
+	&\geq
+	\left( \frac{n+1}{n} \right)^{n} \\
+	\Longrightarrow\quad
+	&&\left(1+\frac{1}{n+1}\right)^{n+1}
+	&\geq
+	\left(1+\frac{1}{n}\right)^{n} \\
+	\Longrightarrow\quad
+	&&a_{n+1}
+	&\geq
+	a_n.
+\end{alignat*}
+この数列は単調非減少である． \qed
+
+\newpage
+\shoumon{(2)}
+
+二項定理
+\begin{equation*}
+	(\xi + \eta)^\nu 
+	= \sum_{k=0}^\nu
+		\binom{\nu}{k}
+		\xi^{\nu-k}\eta^k
+	= \sum_{k=0}^\nu
+		\frac{\nu!}{k!(\nu-k)!}
+		\xi^{\nu-k}\eta^k
+\end{equation*}
+を用いて，
+\begin{align*}
+	a_n 
+	&=
+	\left(1+\frac{1}{n}\right)^{n} \\
+	&=
+	\sum_{k=0}^n
+		\frac{n!}{k!(n-k)!}
+		\left(\frac{1}{n}\right)^{k} \\
+	&=
+	\sum_{k=0}^n
+		\frac{1}{k!}
+		\left(
+			\frac{n}{n}
+			\cdot
+			\frac{n-1}{n}
+			\cdot
+			\frac{n-2}{n}
+			\cdot \cdots \cdot
+			\frac{n-(k-1)}{n}
+		\right) \\
+	&=
+	\sum_{k=0}^n
+		\frac{1}{k!}
+		\left[
+			1
+			\cdot
+			\left(1-\frac{1}{n}\right)
+			\cdot
+			\left(1-\frac{2}{n}\right)
+			\cdot \cdots \cdot
+			\left(1-\frac{k-1}{n}\right)
+		\right] \\
+	&\leq
+	\sum_{k=0}^n \frac{1}{k!} \\
+	&=
+	1+1+\frac{1}{2}+\frac{1}{3\cdot 2}+\cdots +\frac{1}{n!} \\
+	&\leq
+	1+ \sum_{i=0}^{n} \frac{1}{2^i} \\
+	&\leq
+	1+ \sum_{i=0}^{\infty} \frac{1}{2^i} \\
+	&= 1 + \frac{1}{1-1/2} \\
+	&= 3.
+\end{align*}
+$a_n\leq 3$よりこの数列は上に有界であり，3が上界に含まれる． \qed
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{08.pdf}
+	\end{center}
+\end{shadebox}
+\vspace{5mm}
+
+\begin{irohako}[ForestGreen]{Integral test{\footnotemark}}
+	Let $f$ be a function defined for all numbers $\geq 1$.
+	Assume that $f(x) \geq 0$ for all $x$, that $f$ is decresing, and that
+	\begin{equation*}
+		\lim_{U\rightarrow\infty}
+		\int_1^U f(x) \bibun x
+	\end{equation*}
+	exits.
+	Then the series
+	\begin{equation*}
+		\sum_{n=1}^\infty f(n)
+	\end{equation*}
+	converges.
+\end{irohako}
+\footnotetext{Lang, S. (1997), \textsl{Undergraduate Analysis}, Springer-Verlag.}
+
+\begin{irohako}[blue]{d'Alembertの収束判定{\footnotemark}}
+	$\sum a_n$は正項級数とする．有限個の$n$を除き
+	\begin{equation*}
+		\frac{a_{n+1}}{a_n} \leq r
+	\end{equation*}
+	となる$r>1$が存在すれば，$\sum a_n$は収束する．
+	なお，$r=1$のとき，級数によっては収束することもあれば発散することもある．
+\end{irohako}
+\footnotetext{三宅 敏恒 (1992), 『入門微分積分』, 培風館.}
+
+\newpage
+\shoumon{(1)}
+
+$f(x)=1/x$とする．この$f$は$f(x)\geq 0$かつ減少関数である．
+このとき，
+\begin{equation*}
+	\lim_{U\rightarrow\infty}
+	\int_1^U \frac{1}{x} \bibun x
+	=
+	\lim_{U\rightarrow\infty}
+	\ln (U)
+	=
+	\infty
+\end{equation*}
+ゆえ，\textsf{Integral test}より，この級数は収束しない．
+
+
+\shoumon{(2)}
+
+$f(x)=1/(x^2)$とする．この$f$は$f(x)\geq 0$かつ減少関数である．
+このとき，
+\begin{equation*}
+	\lim_{U\rightarrow\infty}
+	\int_1^U \frac{1}{x^2} \bibun x
+	=
+	\lim_{U\rightarrow\infty}
+	\left(1-\frac{1}{U}\right)
+	=
+	1
+\end{equation*}
+ゆえ，\textsf{Integral test}より，この級数は収束する．
+
+
+\shoumon{(3)}
+
+$a_n = 1/n!$とおく．
+このとき，
+\begin{equation*}
+	\lim_{n\rightarrow\infty} \frac{a_{n+1}}{a_n}
+	=
+	\lim_{n\rightarrow\infty} \frac{1/(n+1)!}{1/n!}
+	=
+	\lim_{n\rightarrow\infty} \frac{1}{n+1}
+	= 0 <1.
+\end{equation*}
+ゆえ，\textsf{d'Alembertの収束判定}より，この級数は収束する．
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{09.pdf}
+	\end{center}
+\end{shadebox}
+\vspace{5mm}
+
+以下では数列(の一般項)を$a_n$で表す．
+
+\shoumon{(1)}
+
+$n(k)=2k-1 \ (k\in\mathbb{N})$とすると，
+\begin{equation*}
+	a_{n(k)}
+	=
+	(2k-1)\cos\left(\frac{\pi}{2}(2k-1)\right)
+	=0
+\end{equation*}
+より，部分列$\{a_{n(k)}\}_{k\in\mathbb{N}}$は\uwave{0}に収束する．
+
+$n(k)=4k-2 \ (k\in\mathbb{N})$とすると，
+\begin{equation*}
+	a_{n(k)}
+	=
+	(4k-2)\cos\left(\frac{\pi}{2}(4k-2)\right)
+	=-(4k-2)
+\end{equation*}
+より，部分列$\{a_{n(k)}\}_{k\in\mathbb{N}}$は$-\infty$に発散する．
+
+
+\shoumon{(2)}
+
+$n(k)=2k-1 \ (k\in\mathbb{N})$とすると，
+\begin{equation*}
+	a_{n(k)}
+	=
+	(2k-1)[1+(-1)^{2k-1}]
+	=0
+\end{equation*}
+より，部分列$\{a_{n(k)}\}_{k\in\mathbb{N}}$は\uwave{0}に収束する．
+
+$n(k)=2k \ (k\in\mathbb{N})$とすると，
+\begin{equation*}
+	a_{n(k)}
+	=
+	2k[1+(-1)^{2k}]
+	=4k
+\end{equation*}
+より，部分列$\{a_{n(k)}\}_{k\in\mathbb{N}}$は$+\infty$に発散する．
+
+
+\shoumon{(3)}
+
+$n(k)=2k-1 \ (k\in\mathbb{N})$とすると，
+\begin{equation*}
+	a_{n(k)}
+	=
+	(-1)^{2k-1}\frac{2k-1}{2k}
+	=
+	-\frac{2k-1}{2k}
+\end{equation*}
+より，部分列$\{a_{n(k)}\}_{k\in\mathbb{N}}$は$-1$に収束する．
+
+$n(k)=2k \ (k\in\mathbb{N})$とすると，
+\begin{equation*}
+a_{n(k)}
+=
+(-1)^{2k}\frac{2k}{2k+1}
+=
+\frac{2k}{2k+1}
+\end{equation*}
+より，部分列$\{a_{n(k)}\}_{k\in\mathbb{N}}$は1に収束する．
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{10.pdf}
+	\end{center}
+\end{shadebox}
+\vspace{5mm}
+
+%\begin{equation*}
+%	f(x) = |x| =
+%	\left\{
+%	\begin{array}{ll}
+%		x & \text{if}\ x \geq 0; \\
+%		-x & \text{if}\ x < 0.
+%	\end{array}
+%	\right.
+%\end{equation*}
+
+\begin{itemize}
+	\item[(1)]
+		\begin{equation*}
+			f(A \cap B)
+			= f\big((-1, 1)\big)
+			= \uwave{[0, 1)}.
+		\end{equation*}
+	\item[(2)]
+		\begin{equation*}
+			f(A) \cap f(B)
+			= f\big((-2, 1)\big) \cap f\big((-1, 2]\big)
+			= [0, 2) \cap [0, 2]
+			= \uwave{[0, 2)}.
+		\end{equation*}
+	\item[(3)]
+		\begin{equation*}
+			f^{-1}\big( f(A) \big)
+			= f^{-1}\Big(f\big( (-2, 1) \big)\Big)
+			= f^{-1}\big( [0, 2) \big)
+			= \uwave{(-2, 2)}.
+		\end{equation*}
+	\item[(4)]
+		\begin{equation*}
+			f\big( f^{-1}(C) \big)
+			= f\Big(f^{-1}\big( [0, 3) \big)\Big)
+			= f\big( (-3, 3) \big)
+			= \uwave{(-3, 3)}.
+		\end{equation*}
+\end{itemize}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{11.pdf}
+	\end{center}
+\end{shadebox}
+%\vspace{5mm}
+
+\shoumon{(1)}
+
+$\forall y \in Y$について，
+$f(x)=y$なる$x\in X$が存在するため，\uwave{$f$は全射}．
+
+$\forall x_1, x_2 \in X$について，
+\begin{equation*}
+	f(x_1) = f(x_2)
+	\quad \Longrightarrow \quad
+	2x_1+3 = 2x_2+3
+	\quad \Longrightarrow \quad
+	x_1 = x_2
+\end{equation*}
+が成立するため，\uwave{$f$は単射}．
+
+結局，$f$は全単射．
+
+$y=f(x)$を$x$について解くと逆関数$f^{-1}$が以下の通り求められる．
+\begin{equation*}
+	y = 2x+3
+	\quad \Longrightarrow \quad
+	(x =)\ \uwave{f^{-1}(y) = \frac{1}{2}y - \frac{3}{2}}.
+\end{equation*}
+
+
+\shoumon{(2)}
+
+$\forall y \in Y$について，
+$f(x)=y$なる$x\in X$が存在するため，\uwave{$f$は全射}．
+
+$x_1=1 \in X$，$x_2=-1 \in X$について，$x_1 \neq x_2$かつ
+\begin{equation*}
+	f(x_1) = f(x_2) = 1
+\end{equation*}
+が成立しているため，\uwave{$f$は単射ではない}．
+
+
+\shoumon{(3)}
+
+$y=8 \in Y$について，
+$f(x)=y$なる$x$は$x=3 \not\in X$であるから，\uwave{$f$は全射ではない}．
+
+$\forall x_1, x_2 \in X$について，
+\begin{equation*}
+	f(x_1) = f(x_2)
+	\quad \Longrightarrow \quad
+	x_1^2-1 = x_2^2-1
+	\quad \Longrightarrow \quad
+	x_1 = x_2
+\end{equation*}
+が成立するため，\uwave{$f$は単射}．
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+
+\begin{shadebox}
+	\begin{center}
+		\texttt{12.pdf}
+	\end{center}
+\end{shadebox}
+\vspace{5mm}
+
+$(f\circ g)(x) := f\big(g(x)\big)$，$(g\circ f)(x) := g\big(f(x)\big)$．
+
+\shoumon{(1)}
+
+$f\circ g: \mathbb{R}\longrightarrow\mathbb{R}$:
+\begin{equation*}
+	(f\circ g)(x) = 2(4x+5)+3
+	= \uwave{8x+13}.
+\end{equation*}
+
+$g\circ f: \mathbb{R}\longrightarrow\mathbb{R}$:
+\begin{equation*}
+	(g\circ f)(x) = 4(2x+3)+5
+	= \uwave{8x+17}.
+\end{equation*}
+
+
+\shoumon{(2)}
+
+$f\circ g: \mathbb{R}_+\longrightarrow\mathbb{R}_+$:
+\begin{equation*}
+	(f\circ g)(x) = (\sqrt{x})^2
+	= \uwave{x}.
+\end{equation*}
+
+$g\circ f: \mathbb{R}\longrightarrow\mathbb{R}$:
+\begin{equation*}
+	(g\circ f)(x) = \sqrt{x^2}
+	= \uwave{|x|}.
+\end{equation*}
+
+
+\shoumon{(3)}
+
+$g(y)=-(y+1)(y-2)$．
+
+$f\circ g: \mathbb{R}\longrightarrow\mathbb{R}$:
+\begin{equation*}
+	(f\circ g)(x) = 2(-x^2+x+2)-4
+	= \uwave{-2x^2+2x}.
+\end{equation*}
+
+$g\circ f: \mathbb{R}\longrightarrow\mathbb{R}$:
+\begin{equation*}
+	(g\circ f)(x) = -[(2x-4)+1][(2x-4)-2]
+	= -(2x-3)(2x-6)
+	= \uwave{-4x^2+18x-18}.
+\end{equation*}
+
+\end{document}
